@@ -1,0 +1,38 @@
+# ML Study Notes Configuration
+project:
+  name: "Machine Learning Study Notes"
+  version: "1.0.0"
+  languages:
+    - code: "en"
+      name: "English"
+      flag: "🇺🇸"
+    - code: "zh"
+      name: "中文"
+      flag: "🇨🇳"
+  default_language: "en"
+
+docs:
+  source_dir: "docs"
+  output_dir: "_site"
+
+validation:
+  min_quiz_questions: 5
+  required_sections:
+    - "Interview Summary"
+    - "Core Definitions"
+    - "Math and Derivations"
+    - "Algorithm Sketch"
+    - "Common Pitfalls"
+    - "Mini Example"
+    - "Quiz"
+    - "References"
+
+site:
+  title: "ML Study Notes"
+  description: "Interview-ready Machine Learning notes with math rigor"
+  math_renderer: "katex"
+  theme: "default"
+
+skills:
+  output_file: "skills/extracted_skills.yaml"
+  template_file: "skills/template.yaml"

@@ -1,0 +1,129 @@
+# Skills Extraction Template
+# ==========================
+# Use this template to define extractable ML skills from documentation
+
+categories:
+  - name: "ML Fundamentals"
+    skills:
+      - id: "bias-variance-tradeoff"
+        name: "Bias-Variance Tradeoff"
+        description: "Understand the tradeoff between model complexity and generalization"
+        keywords: ["bias", "variance", "underfitting", "overfitting"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+      - id: "cross-validation"
+        name: "Cross-Validation"
+        description: "Properly implement and interpret k-fold cross-validation"
+        keywords: ["cross-validation", "k-fold", "validation", "data splitting"]
+        difficulty: "beginner"
+        interview_relevance: "high"
+
+      - id: "regularization"
+        name: "Regularization Techniques"
+        description: "Apply L1, L2 regularization and early stopping"
+        keywords: ["regularization", "L1", "L2", "lasso", "ridge", "early stopping"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+  - name: "Core Models"
+    skills:
+      - id: "linear-regression"
+        name: "Linear Regression"
+        description: "Derive and implement OLS, Ridge, and Lasso regression"
+        keywords: ["linear regression", "OLS", "ridge", "lasso"]
+        difficulty: "beginner"
+        interview_relevance: "high"
+
+      - id: "logistic-regression"
+        name: "Logistic Regression"
+        description: "Implement logistic regression and understand decision boundaries"
+        keywords: ["logistic regression", "sigmoid", "cross-entropy", "classification"]
+        difficulty: "beginner"
+        interview_relevance: "high"
+
+      - id: "svm"
+        name: "Support Vector Machines"
+        description: "Understand SVM margin maximization and kernel trick"
+        keywords: ["SVM", "support vector", "kernel", "margin"]
+        difficulty: "intermediate"
+        interview_relevance: "medium"
+
+      - id: "decision-trees"
+        name: "Decision Trees"
+        description: "Build and prune decision trees, understand splitting criteria"
+        keywords: ["decision tree", "gini", "entropy", "information gain"]
+        difficulty: "beginner"
+        interview_relevance: "high"
+
+      - id: "ensemble-methods"
+        name: "Ensemble Methods"
+        description: "Apply Random Forest and Gradient Boosting"
+        keywords: ["random forest", "gradient boosting", "bagging", "boosting", "XGBoost"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+      - id: "clustering"
+        name: "Clustering Algorithms"
+        description: "Implement k-means and understand clustering evaluation"
+        keywords: ["clustering", "k-means", "GMM", "silhouette"]
+        difficulty: "beginner"
+        interview_relevance: "medium"
+
+      - id: "dimensionality-reduction"
+        name: "Dimensionality Reduction"
+        description: "Apply PCA and understand t-SNE/UMAP intuition"
+        keywords: ["PCA", "dimensionality reduction", "t-SNE", "UMAP"]
+        difficulty: "intermediate"
+        interview_relevance: "medium"
+
+  - name: "Deep Learning"
+    skills:
+      - id: "neural-networks"
+        name: "Neural Network Fundamentals"
+        description: "Understand MLP architecture and backpropagation"
+        keywords: ["neural network", "MLP", "backpropagation", "activation"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+      - id: "optimization-algorithms"
+        name: "Optimization Algorithms"
+        description: "Apply SGD, Adam, and learning rate schedules"
+        keywords: ["SGD", "Adam", "momentum", "learning rate", "optimization"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+  - name: "Practical ML"
+    skills:
+      - id: "evaluation-metrics"
+        name: "Evaluation Metrics"
+        description: "Choose and interpret metrics for classification and regression"
+        keywords: ["accuracy", "precision", "recall", "F1", "ROC", "AUC"]
+        difficulty: "beginner"
+        interview_relevance: "high"
+
+      - id: "feature-engineering"
+        name: "Feature Engineering"
+        description: "Create and select features effectively"
+        keywords: ["feature engineering", "preprocessing", "feature selection"]
+        difficulty: "intermediate"
+        interview_relevance: "high"
+
+      - id: "model-calibration"
+        name: "Model Calibration"
+        description: "Calibrate probability outputs and understand reliability diagrams"
+        keywords: ["calibration", "Platt scaling", "reliability diagram"]
+        difficulty: "advanced"
+        interview_relevance: "medium"
+
+# Skill levels
+difficulty_levels:
+  beginner: "Fundamental concept, expected for all ML roles"
+  intermediate: "Deeper understanding, expected for mid-level roles"
+  advanced: "Expert knowledge, expected for senior/specialized roles"
+
+# Interview relevance
+relevance_levels:
+  high: "Very commonly asked in ML interviews"
+  medium: "Sometimes asked, good to know"
+  low: "Rarely asked directly, but useful background"

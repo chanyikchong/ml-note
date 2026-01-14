@@ -1,0 +1,45 @@
+# Example Q&A Proposal
+# =====================
+# This is an example of how to submit a documentation update proposal
+
+title: "Add clarification on Ridge vs Lasso coefficient shrinkage"
+author: "Example Contributor"
+date: "2024-01-15"
+status: "merged"  # This is an example, so marked as merged
+
+type: "enhancement"  # fix, enhancement, new-content
+
+affected_files:
+  - "docs/en/models/linear-regression.md"
+  - "docs/zh/models/linear-regression.md"
+
+description: |
+  The current documentation explains Ridge and Lasso well, but could benefit
+  from a clearer visual comparison of how coefficients shrink differently
+  under each regularization scheme.
+
+  This enhancement adds a visual diagram showing:
+  - Ridge: All coefficients shrink proportionally
+  - Lasso: Some coefficients hit zero, others shrink
+
+changes:
+  - file: "docs/en/models/linear-regression.md"
+    section: "Common Pitfalls"
+    before: |
+      | L1 (Lasso) | L2 (Ridge) |
+      |------------|------------|
+      | Yes (exact zeros) | No |
+    after: |
+      | Property | L1 (Lasso) | L2 (Ridge) |
+      |----------|------------|------------|
+      | Sparsity | Yes (exact zeros) | No |
+      | Visual | Coefficients hit zero | All shrink toward zero |
+
+references:
+  - "Tibshirani, R. (1996). Regression Shrinkage and Selection via the Lasso. JRSS-B."
+  - "Hastie, T., et al. (2009). Elements of Statistical Learning, Chapter 3."
+
+review_notes: |
+  Reviewed on 2024-01-16.
+  Approved: Adds clarity without changing existing correct content.
+  Both EN and ZH versions updated consistently.

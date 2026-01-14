@@ -1,0 +1,15 @@
+# ML Study Notes - Python Dependencies
+
+# Site Generator
+markdown>=3.4.0
+Jinja2>=3.1.0
+PyYAML>=6.0
+
+# Code Examples
+numpy>=1.21.0
+scipy>=1.9.0
+
+# Optional: for running neural network examples
+# torch>=2.0.0
+
+# Validators
