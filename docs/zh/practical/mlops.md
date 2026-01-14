@@ -55,6 +55,7 @@
 ### 模型性能监控
 
 随时间跟踪预测分布：
+
 $$D_{KL}(P_{current} \| P_{baseline}) = \sum_i P_{current}(i) \log \frac{P_{current}(i)}{P_{baseline}(i)}$$
 
 如果$D_{KL} > \tau$（阈值）则报警。
@@ -62,6 +63,7 @@ $$D_{KL}(P_{current} \| P_{baseline}) = \sum_i P_{current}(i) \log \frac{P_{curr
 ### 数据漂移检测（PSI）
 
 群体稳定性指数：
+
 $$PSI = \sum_i (A_i - E_i) \cdot \ln\left(\frac{A_i}{E_i}\right)$$
 
 其中$A_i$ = 实际比例，$E_i$ = 桶$i$的预期比例。
@@ -75,6 +77,7 @@ $$PSI = \sum_i (A_i - E_i) \cdot \ln\left(\frac{A_i}{E_i}\right)$$
 ### A/B测试样本量
 
 每个变体的最小样本：
+
 $$n = \frac{2(z_{\alpha/2} + z_\beta)^2 \sigma^2}{\delta^2}$$
 
 其中$\delta$ = 最小可检测效应。

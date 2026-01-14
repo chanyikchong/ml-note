@@ -20,9 +20,11 @@
 
 ### Convolution Operation
 For input $I$ and kernel $K$:
+
 $$(I * K)[i,j] = \sum_m \sum_n I[i+m, j+n] \cdot K[m, n]$$
 
 ### Output Dimensions
+
 $$\text{output\_size} = \frac{W - K + 2P}{S} + 1$$
 - $W$: Input size
 - $K$: Kernel size
@@ -57,6 +59,7 @@ $$Y[i, j, k] = \sum_{c=0}^{C_{in}-1} \sum_{m=0}^{K-1} \sum_{n=0}^{K-1} X[i \cdot
 ### Parameter Count
 
 For Conv2D with $C_{in}$ input channels, $C_{out}$ output channels, kernel $K$:
+
 $$\text{params} = K \times K \times C_{in} \times C_{out} + C_{out}$$
 
 ### Why Convolutions Work
@@ -72,6 +75,7 @@ Compared to FC:
 ### Backpropagation Through Conv
 
 The gradient of loss w.r.t. kernel:
+
 $$\frac{\partial L}{\partial W} = X * \frac{\partial L}{\partial Y}$$
 
 Full convolution of input with upstream gradient.
@@ -306,6 +310,7 @@ For input $(H, W)$, kernel $K$, stride $S$, padding $P$:
 $$H_{out} = \lfloor\frac{H + 2P - K}{S}\rfloor + 1$$
 
 **Example**: Input 32×32, kernel 5×5, stride 1, padding 2:
+
 $$H_{out} = \frac{32 + 2(2) - 5}{1} + 1 = \frac{31}{1} + 1 = 32$$
 
 For "same" padding (output = input): $P = \frac{K-1}{2}$ (when S=1)
@@ -322,6 +327,7 @@ For "same" padding (output = input): $P = \frac{K-1}{2}$ (when S=1)
 - Need large enough RF to capture relevant patterns
 
 **Calculation**: For L layers with kernel K and stride 1:
+
 $$RF = 1 + L \times (K - 1)$$
 
 Example: 3 layers of 3×3 convs: RF = 1 + 3×2 = 7×7
@@ -369,6 +375,7 @@ For Conv2D with:
 **Parameters**: $K \times K \times C_{in} \times C_{out} + C_{out}$ (bias)
 
 **Example**: 3×3 conv, 64 input channels, 128 output channels:
+
 $$3 \times 3 \times 64 \times 128 + 128 = 73,856$$
 
 Note: Same params regardless of input spatial size (parameter sharing).

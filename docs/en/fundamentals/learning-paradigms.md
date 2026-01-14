@@ -66,11 +66,13 @@ Creating supervisory signals from the data itself, then learning representations
 Given dataset $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$ where $x_i \in \mathcal{X}$, $y_i \in \mathcal{Y}$.
 
 **Empirical Risk Minimization (ERM):**
+
 $$\hat{f} = \arg\min_{f \in \mathcal{F}} \frac{1}{n} \sum_{i=1}^{n} \mathcal{L}(f(x_i), y_i)$$
 
 where $\mathcal{L}$ is the loss function and $\mathcal{F}$ is the hypothesis class.
 
 **True Risk (Generalization Error):**
+
 $$R(f) = \mathbb{E}_{(x,y) \sim P}[\mathcal{L}(f(x), y)]$$
 
 ### Unsupervised Learning Formalization
@@ -78,14 +80,17 @@ $$R(f) = \mathbb{E}_{(x,y) \sim P}[\mathcal{L}(f(x), y)]$$
 Given dataset $\mathcal{D} = \{x_i\}_{i=1}^n$ where $x_i \in \mathcal{X}$.
 
 **Clustering Objective (K-Means):**
+
 $$\min_{C_1,...,C_k} \sum_{j=1}^{k} \sum_{x \in C_j} \|x - \mu_j\|^2$$
 
 **Density Estimation:**
+
 $$\hat{p}(x) = \frac{1}{n} \sum_{i=1}^{n} K_h(x - x_i)$$
 
 ### Self-Supervised Learning
 
 **Contrastive Loss (InfoNCE):**
+
 $$\mathcal{L} = -\log \frac{\exp(sim(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(sim(z_i, z_k)/\tau)}$$
 
 where $z_i, z_j$ are embeddings of augmented views of the same sample.

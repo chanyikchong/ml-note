@@ -19,13 +19,16 @@
 ## 2. Core Definitions
 
 ### Bayes' Theorem
+
 $$P(y|x) = \frac{P(x|y)P(y)}{P(x)}$$
 
 For classification, we need:
+
 $$\hat{y} = \arg\max_y P(y|x) = \arg\max_y P(x|y)P(y)$$
 
 ### Naive Independence Assumption
 Assume features are conditionally independent given class:
+
 $$P(x_1, x_2, ..., x_d | y) = \prod_{j=1}^{d} P(x_j | y)$$
 
 ### Types of Naive Bayes
@@ -45,23 +48,29 @@ $$P(x_1, x_2, ..., x_d | y) = \prod_{j=1}^{d} P(x_j | y)$$
 Given training data $\{(x^{(i)}, y^{(i)})\}_{i=1}^n$:
 
 **Step 1**: Estimate class priors
+
 $$P(y = c) = \frac{\text{count}(y = c)}{n}$$
 
 **Step 2**: Estimate likelihoods (Gaussian example)
+
 $$\mu_{jc} = \frac{1}{n_c}\sum_{i: y^{(i)}=c} x_j^{(i)}$$
+
 $$\sigma_{jc}^2 = \frac{1}{n_c}\sum_{i: y^{(i)}=c} (x_j^{(i)} - \mu_{jc})^2$$
 
 **Step 3**: Prediction
+
 $$\hat{y} = \arg\max_c \left[ \log P(y=c) + \sum_{j=1}^d \log P(x_j | y=c) \right]$$
 
 ### Multinomial Naive Bayes (for text)
 
 For document with word counts $x = (x_1, ..., x_V)$:
+
 $$P(x|y=c) \propto \prod_{j=1}^{V} \theta_{jc}^{x_j}$$
 
 Where $\theta_{jc} = P(\text{word } j | \text{class } c)$
 
 **MLE estimate**:
+
 $$\theta_{jc} = \frac{\text{count}(j, c)}{\sum_{k=1}^V \text{count}(k, c)}$$
 
 ### Laplace Smoothing
@@ -69,14 +78,17 @@ $$\theta_{jc} = \frac{\text{count}(j, c)}{\sum_{k=1}^V \text{count}(k, c)}$$
 Problem: If word never seen in class, $P(x_j|y) = 0$, making entire product 0.
 
 Solution: Add pseudocounts $\alpha$ (typically 1):
+
 $$\theta_{jc} = \frac{\text{count}(j, c) + \alpha}{\sum_{k=1}^V \text{count}(k, c) + \alpha V}$$
 
 ### Log-Space Computation
 
 To avoid underflow from multiplying many small probabilities:
+
 $$\log P(y|x) = \log P(y) + \sum_j \log P(x_j|y) - \log P(x)$$
 
 Since $P(x)$ is constant across classes, we compare:
+
 $$\arg\max_y \left[ \log P(y) + \sum_j \log P(x_j|y) \right]$$
 
 ---
@@ -262,6 +274,7 @@ Example:
 **Problem**: If a feature value never appears with a class in training, $P(x_j|y) = 0$, making the entire product 0.
 
 **Solution**: Add pseudocounts $\alpha$ (typically 1):
+
 $$\theta_{jc} = \frac{\text{count}(j, c) + \alpha}{\text{total count}(c) + \alpha \cdot V}$$
 
 This ensures no probability is ever exactly 0. Also called "additive smoothing" or "add-one smoothing."
@@ -290,6 +303,7 @@ Options:
 3. **Kernel density estimation**: Non-parametric density estimation
 
 Gaussian NB is most common:
+
 $$P(x_j|y=c) = \frac{1}{\sqrt{2\pi\sigma_{jc}^2}} \exp\left(-\frac{(x_j - \mu_{jc})^2}{2\sigma_{jc}^2}\right)$$
 </details>
 

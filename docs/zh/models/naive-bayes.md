@@ -19,13 +19,16 @@
 ## 2. 核心定义
 
 ### 贝叶斯定理
+
 $$P(y|x) = \frac{P(x|y)P(y)}{P(x)}$$
 
 对于分类，我们需要：
+
 $$\hat{y} = \arg\max_y P(y|x) = \arg\max_y P(x|y)P(y)$$
 
 ### 朴素独立性假设
 假设给定类别，特征条件独立：
+
 $$P(x_1, x_2, ..., x_d | y) = \prod_{j=1}^{d} P(x_j | y)$$
 
 ### 朴素贝叶斯类型
@@ -45,23 +48,29 @@ $$P(x_1, x_2, ..., x_d | y) = \prod_{j=1}^{d} P(x_j | y)$$
 给定训练数据 $\{(x^{(i)}, y^{(i)})\}_{i=1}^n$：
 
 **步骤1**：估计类别先验
+
 $$P(y = c) = \frac{\text{count}(y = c)}{n}$$
 
 **步骤2**：估计似然（高斯为例）
+
 $$\mu_{jc} = \frac{1}{n_c}\sum_{i: y^{(i)}=c} x_j^{(i)}$$
+
 $$\sigma_{jc}^2 = \frac{1}{n_c}\sum_{i: y^{(i)}=c} (x_j^{(i)} - \mu_{jc})^2$$
 
 **步骤3**：预测
+
 $$\hat{y} = \arg\max_c \left[ \log P(y=c) + \sum_{j=1}^d \log P(x_j | y=c) \right]$$
 
 ### 多项式朴素贝叶斯（用于文本）
 
 对于词频向量 $x = (x_1, ..., x_V)$ 的文档：
+
 $$P(x|y=c) \propto \prod_{j=1}^{V} \theta_{jc}^{x_j}$$
 
 其中 $\theta_{jc} = P(\text{词 } j | \text{类别 } c)$
 
 **最大似然估计**：
+
 $$\theta_{jc} = \frac{\text{count}(j, c)}{\sum_{k=1}^V \text{count}(k, c)}$$
 
 ### 拉普拉斯平滑
@@ -69,14 +78,17 @@ $$\theta_{jc} = \frac{\text{count}(j, c)}{\sum_{k=1}^V \text{count}(k, c)}$$
 问题：如果某词从未在某类中出现，$P(x_j|y) = 0$，使整个乘积为0。
 
 解决方案：添加伪计数 $\alpha$（通常为1）：
+
 $$\theta_{jc} = \frac{\text{count}(j, c) + \alpha}{\sum_{k=1}^V \text{count}(k, c) + \alpha V}$$
 
 ### 对数空间计算
 
 为避免多个小概率相乘导致下溢：
+
 $$\log P(y|x) = \log P(y) + \sum_j \log P(x_j|y) - \log P(x)$$
 
 由于 $P(x)$ 对所有类别相同，我们比较：
+
 $$\arg\max_y \left[ \log P(y) + \sum_j \log P(x_j|y) \right]$$
 
 ---
@@ -262,6 +274,7 @@ $$P(x_1, x_2, ..., x_d | y) = \prod_{j=1}^{d} P(x_j | y)$$
 **问题**：如果某特征值在训练中从未与某类别出现，$P(x_j|y) = 0$，使整个乘积为0。
 
 **解决方案**：添加伪计数 $\alpha$（通常为1）：
+
 $$\theta_{jc} = \frac{\text{count}(j, c) + \alpha}{\text{total count}(c) + \alpha \cdot V}$$
 
 这确保没有概率恰好为0。也叫"加法平滑"或"加一平滑"。
@@ -290,6 +303,7 @@ $$\theta_{jc} = \frac{\text{count}(j, c) + \alpha}{\text{total count}(c) + \alph
 3. **核密度估计**：非参数密度估计
 
 高斯NB最常见：
+
 $$P(x_j|y=c) = \frac{1}{\sqrt{2\pi\sigma_{jc}^2}} \exp\left(-\frac{(x_j - \mu_{jc})^2}{2\sigma_{jc}^2}\right)$$
 </details>
 

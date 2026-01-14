@@ -21,9 +21,11 @@
 ### 权重初始化
 
 **Xavier/Glorot**（用于tanh/sigmoid）：
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 **He/Kaiming**（用于ReLU）：
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 ### 梯度消失
@@ -38,6 +40,7 @@ $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 ### 梯度裁剪
 限制梯度幅度：
+
 $$g \leftarrow \min\left(1, \frac{\theta}{\|g\|}\right) g$$
 
 ---
@@ -47,17 +50,21 @@ $$g \leftarrow \min\left(1, \frac{\theta}{\|g\|}\right) g$$
 ### 为什么初始化重要
 
 对于层 $h = f(Wx)$，方差传播：
+
 $$\text{Var}(h) = n_{in} \cdot \text{Var}(W) \cdot \text{Var}(x)$$
 
 为了跨层保持方差：
+
 $$\text{Var}(W) = \frac{1}{n_{in}}$$
 
 对于ReLU（杀死一半信号）：
+
 $$\text{Var}(W) = \frac{2}{n_{in}}$$
 
 ### 梯度消失分析
 
 对于L层带激活 $\sigma$：
+
 $$\frac{\partial L}{\partial W_1} = \frac{\partial L}{\partial h_L} \prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}} \frac{\partial h_1}{\partial W_1}$$
 
 如果 $|\sigma'| < 1$（sigmoid, tanh）：
@@ -67,12 +74,15 @@ $$\frac{\partial L}{\partial W_1} = \frac{\partial L}{\partial h_L} \prod_{l=2}^
 ### 学习率调度
 
 **阶梯衰减：**
+
 $$\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$$
 
 **余弦退火：**
+
 $$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})(1 + \cos(\frac{t}{T}\pi))$$
 
 **预热：**
+
 $$\eta_t = \eta_{target} \cdot \frac{t}{T_{warmup}} \quad \text{当 } t < T_{warmup}$$
 
 ---

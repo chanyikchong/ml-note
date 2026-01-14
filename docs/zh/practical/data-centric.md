@@ -51,17 +51,21 @@
 如果$P_{train}(X) \neq P_{test}(X)$但$P(Y|X)$相同：
 
 **重要性加权：**
+
 $$w(x) = \frac{P_{test}(x)}{P_{train}(x)}$$
 
 加权损失：
+
 $$L_{corrected} = \sum_i w(x_i) \cdot \ell(y_i, \hat{y}_i)$$
 
 ### 标签噪声模型
 
 噪声率$\eta$（标签翻转概率）：
+
 $$P(\tilde{y}|x) = (1-\eta) P(y|x) + \eta P(y_{wrong}|x)$$
 
 **前向校正：**
+
 $$P(y|x) = \frac{P(\tilde{y}|x) - \eta P(y_{wrong}|x)}{1 - \eta}$$
 
 ### 异常值检测（Z分数）
@@ -349,6 +353,7 @@ $$w(x) = \frac{P_{test}(x)}{P_{train}(x)}$$
 3. 倾向得分
 
 **加权训练**：
+
 $$\min_\theta \sum_i w(x_i) \cdot L(y_i, f_\theta(x_i))$$
 
 **警告**：当$P_{train}(x)$非常小时不稳定（高方差权重）。

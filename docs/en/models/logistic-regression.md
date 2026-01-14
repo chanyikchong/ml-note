@@ -20,6 +20,7 @@
 ## 2. Core Definitions
 
 ### Model
+
 $$P(y=1|x) = \sigma(w^Tx + b) = \frac{1}{1 + e^{-(w^Tx + b)}}$$
 
 where $\sigma(z) = \frac{1}{1 + e^{-z}}$ is the sigmoid function.
@@ -30,11 +31,13 @@ Predict class 1 if $P(y=1|x) > 0.5$, equivalently if $w^Tx + b > 0$.
 The decision boundary is the hyperplane: $w^Tx + b = 0$
 
 ### Log-Odds (Logit)
+
 $$\log\frac{P(y=1|x)}{P(y=0|x)} = w^Tx + b$$
 
 Linear in features, hence "logistic regression".
 
 ### Loss Function (Binary Cross-Entropy)
+
 $$\mathcal{L}(w) = -\frac{1}{n}\sum_{i=1}^n [y_i\log(\hat{p}_i) + (1-y_i)\log(1-\hat{p}_i)]$$
 
 ---
@@ -60,11 +63,13 @@ $$\mathcal{L} = -[y\log(\sigma(w^Tx)) + (1-y)\log(1-\sigma(w^Tx))]$$
 Let $z = w^Tx$ and $\hat{p} = \sigma(z)$.
 
 $$\frac{\partial \mathcal{L}}{\partial z} = -\frac{y}{\hat{p}}\cdot\hat{p}(1-\hat{p}) + \frac{1-y}{1-\hat{p}}\cdot\hat{p}(1-\hat{p})$$
+
 $$= -y(1-\hat{p}) + (1-y)\hat{p} = \hat{p} - y$$
 
 $$\frac{\partial \mathcal{L}}{\partial w} = \frac{\partial \mathcal{L}}{\partial z} \cdot \frac{\partial z}{\partial w} = (\hat{p} - y)x$$
 
 **Gradient over all samples:**
+
 $$\nabla_w \mathcal{L} = \frac{1}{n}\sum_{i=1}^n (\hat{p}_i - y_i)x_i = \frac{1}{n}X^T(\hat{p} - y)$$
 
 ### Maximum Likelihood Interpretation
@@ -78,6 +83,7 @@ Minimizing cross-entropy = Maximizing log-likelihood.
 ### Multi-class: Softmax Regression
 
 For $K$ classes:
+
 $$P(y=k|x) = \frac{e^{w_k^Tx}}{\sum_{j=1}^K e^{w_j^Tx}}$$
 
 Loss: Cross-entropy over $K$ classes.
@@ -283,6 +289,7 @@ Elegant result: gradient = predictions - labels, scaled by features.
 <summary><strong>Q3: What is the decision boundary of logistic regression?</strong></summary>
 
 The decision boundary is where $P(y=1|x) = 0.5$, which occurs when:
+
 $$w^Tx + b = 0$$
 
 This is a **linear** hyperplane in feature space. In 2D: a line. In 3D: a plane.
@@ -323,6 +330,7 @@ This means:
 <summary><strong>Q6: How does multi-class logistic regression (softmax) work?</strong></summary>
 
 For $K$ classes, use softmax:
+
 $$P(y=k|x) = \frac{e^{w_k^Tx}}{\sum_{j=1}^K e^{w_j^Tx}}$$
 
 Properties:

@@ -55,6 +55,7 @@ $$\mathcal{L}_{reg} = \mathcal{L}_{data} + \lambda_1 \|w\|_1 + \lambda_2 \|w\|_2
 考虑最小化：$\min_w (w - c)^2 + \lambda|w|$
 
 **解：**
+
 $$w^* = \begin{cases}
 c - \lambda/2 & \text{如果 } c > \lambda/2 \\
 0 & \text{如果 } |c| \leq \lambda/2 \\
@@ -78,6 +79,7 @@ c + \lambda/2 & \text{如果 } c < -\lambda/2
 ### 岭回归闭式解
 
 对于带L2的线性回归：
+
 $$\hat{w}_{ridge} = (X^TX + \lambda I)^{-1}X^Ty$$
 
 对比OLS：$\hat{w}_{OLS} = (X^TX)^{-1}X^Ty$
@@ -250,6 +252,7 @@ $$w^* = \text{sign}(c) \cdot \max(|c| - \lambda/2, 0)$$
 - **L1** = 拉普拉斯先验：$p(w) \propto \exp(-\lambda\|w\|_1)$
 
 正则化损失是负对数后验：
+
 $$\mathcal{L}_{reg} = -\log p(y|X,w) - \log p(w) = \mathcal{L}_{data} + \text{正则化}$$
 
 最小化正则化损失 = 找到MAP估计。

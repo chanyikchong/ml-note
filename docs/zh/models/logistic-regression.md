@@ -20,6 +20,7 @@
 ## 2. 核心定义
 
 ### 模型
+
 $$P(y=1|x) = \sigma(w^Tx + b) = \frac{1}{1 + e^{-(w^Tx + b)}}$$
 
 其中 $\sigma(z) = \frac{1}{1 + e^{-z}}$ 是sigmoid函数。
@@ -30,11 +31,13 @@ $$P(y=1|x) = \sigma(w^Tx + b) = \frac{1}{1 + e^{-(w^Tx + b)}}$$
 决策边界是超平面：$w^Tx + b = 0$
 
 ### 对数几率（Logit）
+
 $$\log\frac{P(y=1|x)}{P(y=0|x)} = w^Tx + b$$
 
 对特征线性，因此叫"逻辑回归"。
 
 ### 损失函数（二元交叉熵）
+
 $$\mathcal{L}(w) = -\frac{1}{n}\sum_{i=1}^n [y_i\log(\hat{p}_i) + (1-y_i)\log(1-\hat{p}_i)]$$
 
 ---
@@ -60,11 +63,13 @@ $$\mathcal{L} = -[y\log(\sigma(w^Tx)) + (1-y)\log(1-\sigma(w^Tx))]$$
 令 $z = w^Tx$ 且 $\hat{p} = \sigma(z)$。
 
 $$\frac{\partial \mathcal{L}}{\partial z} = -\frac{y}{\hat{p}}\cdot\hat{p}(1-\hat{p}) + \frac{1-y}{1-\hat{p}}\cdot\hat{p}(1-\hat{p})$$
+
 $$= -y(1-\hat{p}) + (1-y)\hat{p} = \hat{p} - y$$
 
 $$\frac{\partial \mathcal{L}}{\partial w} = \frac{\partial \mathcal{L}}{\partial z} \cdot \frac{\partial z}{\partial w} = (\hat{p} - y)x$$
 
 **所有样本的梯度：**
+
 $$\nabla_w \mathcal{L} = \frac{1}{n}\sum_{i=1}^n (\hat{p}_i - y_i)x_i = \frac{1}{n}X^T(\hat{p} - y)$$
 
 ### 最大似然解释
@@ -78,6 +83,7 @@ $$\nabla_w \mathcal{L} = \frac{1}{n}\sum_{i=1}^n (\hat{p}_i - y_i)x_i = \frac{1}
 ### 多分类：Softmax回归
 
 对于$K$个类别：
+
 $$P(y=k|x) = \frac{e^{w_k^Tx}}{\sum_{j=1}^K e^{w_j^Tx}}$$
 
 损失：$K$个类别的交叉熵。
@@ -283,6 +289,7 @@ $$\frac{\partial \mathcal{L}_i}{\partial w} = (\hat{p}_i - y_i)x_i$$
 <summary><strong>Q3: 逻辑回归的决策边界是什么？</strong></summary>
 
 决策边界是 $P(y=1|x) = 0.5$ 的地方，发生在：
+
 $$w^Tx + b = 0$$
 
 这是特征空间中的**线性**超平面。在2D中：一条线。在3D中：一个平面。
@@ -323,6 +330,7 @@ $$\log\frac{P(y=1|x)}{P(y=0|x)} = w^Tx + b$$
 <summary><strong>Q6: 多分类逻辑回归（softmax）如何工作？</strong></summary>
 
 对于$K$个类别，使用softmax：
+
 $$P(y=k|x) = \frac{e^{w_k^Tx}}{\sum_{j=1}^K e^{w_j^Tx}}$$
 
 性质：

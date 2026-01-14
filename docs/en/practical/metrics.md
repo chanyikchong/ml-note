@@ -61,6 +61,7 @@ Plot of True Positive Rate vs False Positive Rate at various thresholds:
 - AUC < 0.5: Worse than random
 
 **Probabilistic Interpretation:**
+
 $$\text{AUC} = P(\text{score}_{positive} > \text{score}_{negative})$$
 
 ### PR Curve
@@ -72,6 +73,7 @@ Plot of Precision vs Recall:
 ### F-beta Score
 
 Generalized F1 allowing precision-recall weighting:
+
 $$F_\beta = \frac{(1 + \beta^2) \cdot Prec \cdot Rec}{\beta^2 \cdot Prec + Rec}$$
 
 - $\beta = 1$: Equal weight (F1)

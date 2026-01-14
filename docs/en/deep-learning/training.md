@@ -21,9 +21,11 @@
 ### Weight Initialization
 
 **Xavier/Glorot** (for tanh/sigmoid):
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 **He/Kaiming** (for ReLU):
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$$
 
 ### Vanishing Gradients
@@ -38,6 +40,7 @@ Gradients become exponentially large:
 
 ### Gradient Clipping
 Limit gradient magnitude:
+
 $$g \leftarrow \min\left(1, \frac{\theta}{\|g\|}\right) g$$
 
 ---
@@ -47,17 +50,21 @@ $$g \leftarrow \min\left(1, \frac{\theta}{\|g\|}\right) g$$
 ### Why Initialization Matters
 
 For layer $h = f(Wx)$, variance propagation:
+
 $$\text{Var}(h) = n_{in} \cdot \text{Var}(W) \cdot \text{Var}(x)$$
 
 To maintain variance across layers:
+
 $$\text{Var}(W) = \frac{1}{n_{in}}$$
 
 For ReLU (kills half the signal):
+
 $$\text{Var}(W) = \frac{2}{n_{in}}$$
 
 ### Vanishing Gradient Analysis
 
 For L layers with activation $\sigma$:
+
 $$\frac{\partial L}{\partial W_1} = \frac{\partial L}{\partial h_L} \prod_{l=2}^{L} \frac{\partial h_l}{\partial h_{l-1}} \frac{\partial h_1}{\partial W_1}$$
 
 If $|\sigma'| < 1$ (sigmoid, tanh):
@@ -67,12 +74,15 @@ If $|\sigma'| < 1$ (sigmoid, tanh):
 ### Learning Rate Schedules
 
 **Step decay:**
+
 $$\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$$
 
 **Cosine annealing:**
+
 $$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})(1 + \cos(\frac{t}{T}\pi))$$
 
 **Warmup:**
+
 $$\eta_t = \eta_{target} \cdot \frac{t}{T_{warmup}} \quad \text{for } t < T_{warmup}$$
 
 ---

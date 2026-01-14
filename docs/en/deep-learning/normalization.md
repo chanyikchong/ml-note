@@ -20,13 +20,16 @@
 
 ### Batch Normalization
 For input $x$ with shape $(N, C, H, W)$, normalize per channel across batch:
+
 $$\hat{x} = \frac{x - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
+
 $$y = \gamma \hat{x} + \beta$$
 
 Where $\mu_B, \sigma_B^2$ are batch statistics per channel.
 
 ### Layer Normalization
 For input $x$, normalize across feature dimensions:
+
 $$\hat{x}_i = \frac{x_i - \mu_i}{\sqrt{\sigma_i^2 + \epsilon}}$$
 
 Where $\mu_i, \sigma_i^2$ are computed over features for each sample.
@@ -50,13 +53,17 @@ Normalize each sample and channel independently:
 For mini-batch $\{x_1, ..., x_m\}$:
 
 **Step 1**: Compute batch statistics
+
 $$\mu_B = \frac{1}{m}\sum_{i=1}^m x_i$$
+
 $$\sigma_B^2 = \frac{1}{m}\sum_{i=1}^m (x_i - \mu_B)^2$$
 
 **Step 2**: Normalize
+
 $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
 
 **Step 3**: Scale and shift
+
 $$y_i = \gamma \hat{x}_i + \beta$$
 
 ### Why Batch Normalization Works
@@ -70,7 +77,9 @@ Several hypotheses:
 ### Batch Norm at Inference
 
 During training, maintain running averages:
+
 $$\mu_{running} = (1 - \alpha) \mu_{running} + \alpha \mu_B$$
+
 $$\sigma_{running}^2 = (1 - \alpha) \sigma_{running}^2 + \alpha \sigma_B^2$$
 
 At inference, use running statistics (deterministic output).
@@ -78,8 +87,11 @@ At inference, use running statistics (deterministic output).
 ### Batch Norm Gradients
 
 Backpropagation through normalization:
+
 $$\frac{\partial L}{\partial \gamma} = \sum_i \frac{\partial L}{\partial y_i} \hat{x}_i$$
+
 $$\frac{\partial L}{\partial \beta} = \sum_i \frac{\partial L}{\partial y_i}$$
+
 $$\frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial \hat{x}_i} \cdot \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + ...$$
 
 (Full gradient involves terms through $\mu$ and $\sigma^2$)
@@ -349,6 +361,7 @@ Two learnable parameters per feature:
 - **β (beta)**: Shift parameter
 
 After normalization to zero mean and unit variance:
+
 $$y = \gamma \hat{x} + \beta$$
 
 **Why needed**: Normalization might remove useful information. γ and β allow the network to learn to undo normalization if needed (when γ=σ, β=μ, we recover original).

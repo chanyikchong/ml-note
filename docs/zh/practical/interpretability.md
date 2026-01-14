@@ -47,6 +47,7 @@
 ### 排列重要性
 
 测量特征$j$的重要性：
+
 $$I_j = s - \frac{1}{K}\sum_{k=1}^{K} s_{\pi_k(j)}$$
 
 其中：
@@ -57,6 +58,7 @@ $$I_j = s - \frac{1}{K}\sum_{k=1}^{K} s_{\pi_k(j)}$$
 ### SHAP值（Shapley值）
 
 对于特征$i$，SHAP值：
+
 $$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f(S \cup \{i\}) - f(S)]$$
 
 **性质：**
@@ -68,6 +70,7 @@ $$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f
 ### LIME（局部可解释模型无关解释）
 
 找到近似$f$的局部可解释模型$g$：
+
 $$\xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g)$$
 
 其中：

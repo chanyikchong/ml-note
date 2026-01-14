@@ -39,6 +39,7 @@ $$\text{泛化误差} = \mathbb{E}_{(x,y)\sim P}[\mathcal{L}(f(x), y)]$$
 - 有限假设类$|\mathcal{H}|$：VC维 ≤ $\log_2|\mathcal{H}|$
 
 ### 泛化差距
+
 $$\text{差距} = \mathcal{L}_{test} - \mathcal{L}_{train}$$
 
 ---
@@ -67,6 +68,7 @@ $$\mathcal{R}_n(\mathcal{H}) = \mathbb{E}_{\sigma}\left[\sup_{h \in \mathcal{H}}
 其中$\sigma_i$是Rademacher随机变量（等概率$\pm 1$）。
 
 **泛化界：**
+
 $$R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + O\left(\sqrt{\frac{\ln(1/\delta)}{n}}\right)$$
 
 ### PAC学习框架
@@ -76,6 +78,7 @@ $$R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + O\left(\sqrt{\frac{\ln(1/
 - $\delta > 0$（置信度参数）
 
 输出一个假设$h$，使得以至少$1-\delta$的概率：
+
 $$P(h(x) \neq c(x)) \leq \epsilon$$
 
 使用$m = \text{poly}(1/\epsilon, 1/\delta, n, \text{size}(c))$个样本。
@@ -260,6 +263,7 @@ VC维衡量模型的**容量**或**灵活性**：
 <summary><strong>Q3: 泛化误差与模型容量和训练集大小有什么关系？</strong></summary>
 
 根据VC理论：
+
 $$\text{泛化误差} \leq \text{训练误差} + O\left(\sqrt{\frac{d_{VC}}{n}}\right)$$
 
 这告诉我们：

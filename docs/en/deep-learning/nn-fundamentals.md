@@ -26,6 +26,7 @@ A feedforward neural network with:
 - Fully connected (dense) layers
 
 ### Forward Pass
+
 $$h^{(l)} = \sigma(W^{(l)}h^{(l-1)} + b^{(l)})$$
 
 ### Backpropagation
@@ -50,12 +51,15 @@ $$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\p
 For loss $\mathcal{L}$ and layer output $a^{(l)} = \sigma(z^{(l)})$ where $z^{(l)} = W^{(l)}a^{(l-1)} + b^{(l)}$:
 
 **Output layer gradient:**
+
 $$\delta^{(L)} = \frac{\partial \mathcal{L}}{\partial z^{(L)}}$$
 
 **Hidden layer gradient (recursive):**
+
 $$\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})$$
 
 **Weight gradient:**
+
 $$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \delta^{(l)} (a^{(l-1)})^T$$
 
 ### Universal Approximation Theorem
@@ -190,6 +194,7 @@ This allows efficient gradient computation in $O(n)$ time per sample.
 <summary><strong>Q5: What is Xavier/Glorot initialization?</strong></summary>
 
 Initialize weights as:
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 This keeps variance of activations roughly constant across layers, preventing vanishing/exploding signals during forward pass.

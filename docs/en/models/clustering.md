@@ -20,10 +20,12 @@
 
 ### K-Means
 Minimize within-cluster sum of squares:
+
 $$\arg\min_{\mu} \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
 
 ### Gaussian Mixture Model (GMM)
 Model data as mixture of Gaussians:
+
 $$P(x) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)$$
 
 Where $\pi_k$ are mixing coefficients.
@@ -64,16 +66,21 @@ Where $\pi_k$ are mixing coefficients.
 ### GMM and EM Algorithm
 
 **E-step**: Compute responsibilities
+
 $$\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}$$
 
 **M-step**: Update parameters
+
 $$\mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}$$
+
 $$\Sigma_k = \frac{\sum_i \gamma_{ik} (x_i - \mu_k)(x_i - \mu_k)^T}{\sum_i \gamma_{ik}}$$
+
 $$\pi_k = \frac{1}{n}\sum_i \gamma_{ik}$$
 
 ### Silhouette Score
 
 For each point $i$:
+
 $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$$
 
 - $a(i)$: Average distance to same-cluster points
@@ -396,6 +403,7 @@ Use **K-Means** when:
 <summary><strong>Q6: What is the silhouette score and how do you interpret it?</strong></summary>
 
 Silhouette score for point i:
+
 $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$$
 
 - a(i): cohesion (mean distance to same cluster)

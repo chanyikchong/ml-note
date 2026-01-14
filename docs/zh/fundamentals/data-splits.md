@@ -51,11 +51,13 @@
 $$\text{测试误差} \approx \mathbb{E}[\mathcal{L}(f(x), y)]$$
 
 **偏差-方差分解**（对于平方损失）：
+
 $$\mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}^2[\hat{f}(x)] + \text{Var}[\hat{f}(x)] + \sigma^2$$
 
 ### 交叉验证估计器
 
 K折CV泛化误差估计：
+
 $$\hat{R}_{CV} = \frac{1}{K} \sum_{k=1}^{K} \frac{1}{|D_k|} \sum_{(x,y) \in D_k} \mathcal{L}(f^{(-k)}(x), y)$$
 
 其中 $f^{(-k)}$ 在除折 $k$ 以外的所有数据上训练。

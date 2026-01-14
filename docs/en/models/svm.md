@@ -25,6 +25,7 @@ For linearly separable data, find hyperplane $w^Tx + b = 0$ that:
 
 ### Soft Margin SVM
 Allow some misclassification with slack variables $\xi_i$:
+
 $$y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 
 ### Support Vectors
@@ -48,11 +49,13 @@ $K(x, z) = \langle\phi(x), \phi(z)\rangle$ computes inner product in feature spa
 ### Primal Formulation (Hard Margin)
 
 $$\min_{w,b} \frac{1}{2}\|w\|^2$$
+
 $$\text{s.t. } y_i(w^Tx_i + b) \geq 1, \quad \forall i$$
 
 ### Primal Formulation (Soft Margin)
 
 $$\min_{w,b,\xi} \frac{1}{2}\|w\|^2 + C\sum_i \xi_i$$
+
 $$\text{s.t. } y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 
 ### Dual Formulation
@@ -60,6 +63,7 @@ $$\text{s.t. } y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 Using Lagrangian with multipliers $\alpha_i$:
 
 $$\max_\alpha \sum_i \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^T x_j$$
+
 $$\text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0$$
 
 **Key insight**: Only dot products $x_i^Tx_j$ appear → can use kernels!
@@ -71,6 +75,7 @@ Replace $x_i^Tx_j$ with $K(x_i, x_j) = \phi(x_i)^T\phi(x_j)$:
 $$\max_\alpha \sum_i \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j K(x_i, x_j)$$
 
 **Decision function**:
+
 $$f(x) = \text{sign}\left(\sum_i \alpha_i y_i K(x_i, x) + b\right)$$
 
 ### RBF Kernel Properties

@@ -19,11 +19,13 @@
 
 ### PCA（主成分分析）
 找到最大方差方向：
+
 $$\max_w w^T \Sigma w \quad \text{s.t. } \|w\|_2 = 1$$
 
 解：协方差矩阵 $\Sigma$ 的特征向量。
 
 ### 解释方差比
+
 $$\text{解释比例}_k = \frac{\lambda_k}{\sum_i \lambda_i}$$
 
 选择k以解释期望的方差百分比（如95%）。
@@ -47,13 +49,17 @@ $$\text{解释比例}_k = \frac{\lambda_k}{\sum_i \lambda_i}$$
 **目标**：找到最大化方差的投影 $w$。
 
 **投影数据的方差：**
+
 $$\text{Var}(Xw) = w^T X^T X w = w^T \Sigma w$$
 
 **约束优化**（拉格朗日）：
+
 $$L = w^T \Sigma w - \lambda(w^T w - 1)$$
 
 **求导：**
+
 $$\frac{\partial L}{\partial w} = 2\Sigma w - 2\lambda w = 0$$
+
 $$\Sigma w = \lambda w$$
 
 解：$w$ 是 $\Sigma$ 的特征向量，方差 = $\lambda$。
@@ -63,6 +69,7 @@ $$\Sigma w = \lambda w$$
 ### 通过SVD的PCA
 
 对于中心化数据 $X$：
+
 $$X = U \Sigma V^T$$
 
 - $V$ 的列：主成分（$X^T X$ 的特征向量）
@@ -74,13 +81,17 @@ SVD在数值上比特征分解更稳定。
 ### t-SNE算法
 
 **步骤1**：计算高维成对相似度
+
 $$p_{j|i} = \frac{\exp(-\|x_i - x_j\|^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|x_i - x_k\|^2 / 2\sigma_i^2)}$$
+
 $$p_{ij} = \frac{p_{j|i} + p_{i|j}}{2n}$$
 
 **步骤2**：定义低维相似度（t分布）
+
 $$q_{ij} = \frac{(1 + \|y_i - y_j\|^2)^{-1}}{\sum_{k \neq l}(1 + \|y_k - y_l\|^2)^{-1}}$$
 
 **步骤3**：最小化KL散度
+
 $$KL(P \| Q) = \sum_{i \neq j} p_{ij} \log \frac{p_{ij}}{q_{ij}}$$
 
 ### 为什么用t分布？
@@ -293,12 +304,15 @@ PCA重建MSE: 0.0098
 **投影方差**：$\text{Var}(Xw) = w^T \Sigma w$，其中 $\Sigma$ 是协方差矩阵。
 
 **约束优化**：
+
 $$\max_w w^T \Sigma w \quad \text{s.t. } w^T w = 1$$
 
 **拉格朗日**：$L = w^T \Sigma w - \lambda(w^T w - 1)$
 
 **梯度置零**：
+
 $$\nabla_w L = 2\Sigma w - 2\lambda w = 0$$
+
 $$\Sigma w = \lambda w$$
 
 这是特征值方程。最大方差方向是最大特征值对应的特征向量。

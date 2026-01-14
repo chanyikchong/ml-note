@@ -56,6 +56,7 @@ For regression with squared loss, the expected prediction error can be decompose
 - Learned function: $\hat{f}(x)$ trained on dataset $\mathcal{D}$
 
 **Derivation:**
+
 $$\begin{aligned}
 \mathbb{E}_\mathcal{D}[(y - \hat{f}(x))^2] &= \mathbb{E}_\mathcal{D}[(f(x) + \epsilon - \hat{f}(x))^2] \\
 &= \mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))^2] + \mathbb{E}[\epsilon^2] + 2\mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))\epsilon] \\
@@ -63,12 +64,14 @@ $$\begin{aligned}
 \end{aligned}$$
 
 The first term decomposes further:
+
 $$\begin{aligned}
 \mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))^2] &= (f(x) - \mathbb{E}_\mathcal{D}[\hat{f}(x)])^2 + \mathbb{E}_\mathcal{D}[(\hat{f}(x) - \mathbb{E}_\mathcal{D}[\hat{f}(x)])^2] \\
 &= \text{Bias}^2[\hat{f}(x)] + \text{Var}[\hat{f}(x)]
 \end{aligned}$$
 
 **Final Result:**
+
 $$\boxed{\text{Expected Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise}}$$
 
 ### Model Complexity and Tradeoff

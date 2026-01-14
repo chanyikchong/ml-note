@@ -51,11 +51,13 @@ True generalization error cannot be computed directly. We estimate it:
 $$\text{Test Error} \approx \mathbb{E}[\mathcal{L}(f(x), y)]$$
 
 **Bias-Variance Decomposition** (for squared loss):
+
 $$\mathbb{E}[(y - \hat{f}(x))^2] = \text{Bias}^2[\hat{f}(x)] + \text{Var}[\hat{f}(x)] + \sigma^2$$
 
 ### Cross-Validation Estimator
 
 K-fold CV estimate of generalization error:
+
 $$\hat{R}_{CV} = \frac{1}{K} \sum_{k=1}^{K} \frac{1}{|D_k|} \sum_{(x,y) \in D_k} \mathcal{L}(f^{(-k)}(x), y)$$
 
 where $f^{(-k)}$ is trained on all data except fold $k$.

@@ -66,11 +66,13 @@
 给定数据集 $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$，其中 $x_i \in \mathcal{X}$，$y_i \in \mathcal{Y}$。
 
 **经验风险最小化（ERM）：**
+
 $$\hat{f} = \arg\min_{f \in \mathcal{F}} \frac{1}{n} \sum_{i=1}^{n} \mathcal{L}(f(x_i), y_i)$$
 
 其中 $\mathcal{L}$ 是损失函数，$\mathcal{F}$ 是假设类。
 
 **真实风险（泛化误差）：**
+
 $$R(f) = \mathbb{E}_{(x,y) \sim P}[\mathcal{L}(f(x), y)]$$
 
 ### 无监督学习形式化
@@ -78,14 +80,17 @@ $$R(f) = \mathbb{E}_{(x,y) \sim P}[\mathcal{L}(f(x), y)]$$
 给定数据集 $\mathcal{D} = \{x_i\}_{i=1}^n$，其中 $x_i \in \mathcal{X}$。
 
 **聚类目标（K-Means）：**
+
 $$\min_{C_1,...,C_k} \sum_{j=1}^{k} \sum_{x \in C_j} \|x - \mu_j\|^2$$
 
 **密度估计：**
+
 $$\hat{p}(x) = \frac{1}{n} \sum_{i=1}^{n} K_h(x - x_i)$$
 
 ### 自监督学习
 
 **对比损失（InfoNCE）：**
+
 $$\mathcal{L} = -\log \frac{\exp(sim(z_i, z_j)/\tau)}{\sum_{k=1}^{2N} \mathbb{1}_{[k \neq i]} \exp(sim(z_i, z_k)/\tau)}$$
 
 其中 $z_i, z_j$ 是同一样本增强视图的嵌入。

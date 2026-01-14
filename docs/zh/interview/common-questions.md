@@ -173,6 +173,7 @@
 **答**：BatchNorm跨批次归一化层输入：
 
 $$\hat{x} = \frac{x - \mu_{batch}}{\sqrt{\sigma^2_{batch} + \epsilon}}$$
+
 $$y = \gamma \hat{x} + \beta$$
 
 **好处**：

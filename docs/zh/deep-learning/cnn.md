@@ -20,9 +20,11 @@
 
 ### 卷积操作
 对于输入 $I$ 和核 $K$：
+
 $$(I * K)[i,j] = \sum_m \sum_n I[i+m, j+n] \cdot K[m, n]$$
 
 ### 输出维度
+
 $$\text{输出尺寸} = \frac{W - K + 2P}{S} + 1$$
 - $W$：输入大小
 - $K$：核大小
@@ -57,6 +59,7 @@ $$Y[i, j, k] = \sum_{c=0}^{C_{in}-1} \sum_{m=0}^{K-1} \sum_{n=0}^{K-1} X[i \cdot
 ### 参数计数
 
 对于具有 $C_{in}$ 输入通道、$C_{out}$ 输出通道、核 $K$ 的Conv2D：
+
 $$\text{参数} = K \times K \times C_{in} \times C_{out} + C_{out}$$
 
 ### 为什么卷积有效
@@ -72,6 +75,7 @@ $$\text{参数} = K \times K \times C_{in} \times C_{out} + C_{out}$$
 ### 通过Conv的反向传播
 
 损失对核的梯度：
+
 $$\frac{\partial L}{\partial W} = X * \frac{\partial L}{\partial Y}$$
 
 输入与上游梯度的完整卷积。
@@ -306,6 +310,7 @@ Pool2后: (2, 2, 2, 8)
 $$H_{out} = \lfloor\frac{H + 2P - K}{S}\rfloor + 1$$
 
 **例子**：输入32×32，核5×5，步幅1，填充2：
+
 $$H_{out} = \frac{32 + 2(2) - 5}{1} + 1 = \frac{31}{1} + 1 = 32$$
 
 对于"same"填充（输出=输入）：$P = \frac{K-1}{2}$（当S=1时）
@@ -322,6 +327,7 @@ $$H_{out} = \frac{32 + 2(2) - 5}{1} + 1 = \frac{31}{1} + 1 = 32$$
 - 需要足够大的RF来捕获相关模式
 
 **计算**：对于L层步幅1的核K：
+
 $$RF = 1 + L \times (K - 1)$$
 
 例子：3层3×3卷积：RF = 1 + 3×2 = 7×7
@@ -369,6 +375,7 @@ $$RF = 1 + L \times (K - 1)$$
 **参数**：$K \times K \times C_{in} \times C_{out} + C_{out}$（偏置）
 
 **例子**：3×3卷积，64输入通道，128输出通道：
+
 $$3 \times 3 \times 64 \times 128 + 128 = 73,856$$
 
 注意：无论输入空间大小参数相同（参数共享）。

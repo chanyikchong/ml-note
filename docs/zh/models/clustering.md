@@ -20,10 +20,12 @@
 
 ### K-Means
 最小化簇内平方和：
+
 $$\arg\min_{\mu} \sum_{k=1}^{K} \sum_{x_i \in C_k} \|x_i - \mu_k\|^2$$
 
 ### 高斯混合模型（GMM）
 将数据建模为高斯混合：
+
 $$P(x) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)$$
 
 其中 $\pi_k$ 是混合系数。
@@ -64,16 +66,21 @@ $$P(x) = \sum_{k=1}^{K} \pi_k \mathcal{N}(x | \mu_k, \Sigma_k)$$
 ### GMM和EM算法
 
 **E步**：计算责任度
+
 $$\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i | \mu_k, \Sigma_k)}{\sum_j \pi_j \mathcal{N}(x_i | \mu_j, \Sigma_j)}$$
 
 **M步**：更新参数
+
 $$\mu_k = \frac{\sum_i \gamma_{ik} x_i}{\sum_i \gamma_{ik}}$$
+
 $$\Sigma_k = \frac{\sum_i \gamma_{ik} (x_i - \mu_k)(x_i - \mu_k)^T}{\sum_i \gamma_{ik}}$$
+
 $$\pi_k = \frac{1}{n}\sum_i \gamma_{ik}$$
 
 ### 轮廓系数
 
 对于每个点 $i$：
+
 $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$$
 
 - $a(i)$：到同簇点的平均距离
@@ -396,6 +403,7 @@ k=6: 惯性=175.4
 <summary><strong>Q6: 什么是轮廓系数，如何解读？</strong></summary>
 
 点i的轮廓系数：
+
 $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$$
 
 - a(i)：凝聚度（到同簇的平均距离）

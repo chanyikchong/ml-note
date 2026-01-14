@@ -36,6 +36,7 @@ For a new point $x$:
 
 ### Weighted kNN
 Weight neighbors by inverse distance:
+
 $$\hat{y} = \frac{\sum_{i \in N_k} w_i y_i}{\sum_{i \in N_k} w_i}, \quad w_i = \frac{1}{d(x, x_i)}$$
 
 ---
@@ -66,6 +67,7 @@ In high dimensions:
 - Nearest neighbor is not much closer than farthest
 
 For uniform distribution in $[0,1]^d$:
+
 $$\frac{\text{dist}_{max} - \text{dist}_{min}}{\text{dist}_{min}} \to 0 \text{ as } d \to \infty$$
 
 Volume of hypersphere relative to hypercube vanishes exponentially.

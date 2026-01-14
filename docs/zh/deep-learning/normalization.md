@@ -20,13 +20,16 @@
 
 ### 批归一化
 对于形状为 $(N, C, H, W)$ 的输入 $x$，每个通道跨批次归一化：
+
 $$\hat{x} = \frac{x - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
+
 $$y = \gamma \hat{x} + \beta$$
 
 其中 $\mu_B, \sigma_B^2$ 是每个通道的批次统计量。
 
 ### 层归一化
 对于输入 $x$，跨特征维度归一化：
+
 $$\hat{x}_i = \frac{x_i - \mu_i}{\sqrt{\sigma_i^2 + \epsilon}}$$
 
 其中 $\mu_i, \sigma_i^2$ 在每个样本的特征上计算。
@@ -50,13 +53,17 @@ $$\hat{x}_i = \frac{x_i - \mu_i}{\sqrt{\sigma_i^2 + \epsilon}}$$
 对于小批次 $\{x_1, ..., x_m\}$：
 
 **步骤1**：计算批次统计量
+
 $$\mu_B = \frac{1}{m}\sum_{i=1}^m x_i$$
+
 $$\sigma_B^2 = \frac{1}{m}\sum_{i=1}^m (x_i - \mu_B)^2$$
 
 **步骤2**：归一化
+
 $$\hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}$$
 
 **步骤3**：缩放和偏移
+
 $$y_i = \gamma \hat{x}_i + \beta$$
 
 ### 为什么批归一化有效
@@ -70,7 +77,9 @@ $$y_i = \gamma \hat{x}_i + \beta$$
 ### 推理时的批归一化
 
 训练期间，维护滑动平均：
+
 $$\mu_{running} = (1 - \alpha) \mu_{running} + \alpha \mu_B$$
+
 $$\sigma_{running}^2 = (1 - \alpha) \sigma_{running}^2 + \alpha \sigma_B^2$$
 
 推理时，使用滑动统计量（确定性输出）。
@@ -78,8 +87,11 @@ $$\sigma_{running}^2 = (1 - \alpha) \sigma_{running}^2 + \alpha \sigma_B^2$$
 ### 批归一化梯度
 
 通过归一化的反向传播：
+
 $$\frac{\partial L}{\partial \gamma} = \sum_i \frac{\partial L}{\partial y_i} \hat{x}_i$$
+
 $$\frac{\partial L}{\partial \beta} = \sum_i \frac{\partial L}{\partial y_i}$$
+
 $$\frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial \hat{x}_i} \cdot \frac{1}{\sqrt{\sigma_B^2 + \epsilon}} + ...$$
 
 （完整梯度涉及通过 $\mu$ 和 $\sigma^2$ 的项）
@@ -349,6 +361,7 @@ print(f"  使用running_var: {bn.running_var[:4]}...")
 - **β（beta）**：偏移参数
 
 归一化到零均值和单位方差后：
+
 $$y = \gamma \hat{x} + \beta$$
 
 **为什么需要**：归一化可能移除有用信息。γ和β允许网络学习在需要时撤销归一化（当γ=σ, β=μ时，恢复原始值）。

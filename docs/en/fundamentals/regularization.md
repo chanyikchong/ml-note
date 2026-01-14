@@ -55,6 +55,7 @@ Stop training when validation error stops improving.
 Consider minimizing: $\min_w (w - c)^2 + \lambda|w|$
 
 **Solution:**
+
 $$w^* = \begin{cases}
 c - \lambda/2 & \text{if } c > \lambda/2 \\
 0 & \text{if } |c| \leq \lambda/2 \\
@@ -78,6 +79,7 @@ MAP estimate with regularization = MLE with prior.
 ### Ridge Regression Closed Form
 
 For linear regression with L2:
+
 $$\hat{w}_{ridge} = (X^TX + \lambda I)^{-1}X^Ty$$
 
 Compare to OLS: $\hat{w}_{OLS} = (X^TX)^{-1}X^Ty$
@@ -250,6 +252,7 @@ Regularization corresponds to placing a prior on the weights:
 - **L1** = Laplace prior: $p(w) \propto \exp(-\lambda\|w\|_1)$
 
 The regularized loss is the negative log posterior:
+
 $$\mathcal{L}_{reg} = -\log p(y|X,w) - \log p(w) = \mathcal{L}_{data} + \text{regularization}$$
 
 Minimizing regularized loss = finding MAP estimate.

@@ -27,17 +27,21 @@
 ### Splitting Criteria (Classification)
 
 **Gini Impurity:**
+
 $$G = 1 - \sum_{k=1}^{K} p_k^2$$
 
 **Entropy:**
+
 $$H = -\sum_{k=1}^{K} p_k \log_2 p_k$$
 
 **Information Gain:**
+
 $$IG = H(\text{parent}) - \sum_{\text{child}} \frac{n_{\text{child}}}{n_{\text{parent}}} H(\text{child})$$
 
 ### Splitting Criteria (Regression)
 
 **Mean Squared Error:**
+
 $$MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \bar{y})^2$$
 
 Split to minimize weighted MSE of children.
@@ -49,9 +53,11 @@ Split to minimize weighted MSE of children.
 ### Gini Impurity Derivation
 
 Gini measures probability of misclassifying a randomly chosen element:
+
 $$G = \sum_{k=1}^{K} p_k (1 - p_k) = 1 - \sum_{k=1}^{K} p_k^2$$
 
 For binary classification with $p$ positive:
+
 $$G = 2p(1-p)$$
 
 - $G = 0$: Pure node (all same class)
@@ -327,6 +333,7 @@ A tree with max_depth=∞ achieves 100% training accuracy but poor generalizatio
 <summary><strong>Q3: What is information gain and how is it used?</strong></summary>
 
 Information gain measures impurity reduction from a split:
+
 $$IG = H(\text{parent}) - \sum_{\text{children}} \frac{n_{\text{child}}}{n_{\text{parent}}} H(\text{child})$$
 
 Higher IG = better split (more impurity reduction)

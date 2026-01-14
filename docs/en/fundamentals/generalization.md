@@ -39,6 +39,7 @@ The maximum number of points that can be shattered (perfectly classified for all
 - Finite hypothesis class $|\mathcal{H}|$: VC dimension ≤ $\log_2|\mathcal{H}|$
 
 ### Generalization Gap
+
 $$\text{Gap} = \mathcal{L}_{test} - \mathcal{L}_{train}$$
 
 ---
@@ -67,6 +68,7 @@ $$\mathcal{R}_n(\mathcal{H}) = \mathbb{E}_{\sigma}\left[\sup_{h \in \mathcal{H}}
 where $\sigma_i$ are Rademacher random variables ($\pm 1$ with equal probability).
 
 **Generalization Bound:**
+
 $$R(h) \leq \hat{R}(h) + 2\mathcal{R}_n(\mathcal{H}) + O\left(\sqrt{\frac{\ln(1/\delta)}{n}}\right)$$
 
 ### PAC Learning Framework
@@ -76,6 +78,7 @@ A concept class $\mathcal{C}$ is PAC-learnable if there exists an algorithm that
 - $\delta > 0$ (confidence parameter)
 
 Outputs a hypothesis $h$ such that with probability $\geq 1-\delta$:
+
 $$P(h(x) \neq c(x)) \leq \epsilon$$
 
 using $m = \text{poly}(1/\epsilon, 1/\delta, n, \text{size}(c))$ samples.
@@ -260,6 +263,7 @@ Example: A line in 2D can shatter 3 points (any labeling of 3 general-position p
 <summary><strong>Q3: How does generalization error relate to model capacity and training set size?</strong></summary>
 
 From VC theory:
+
 $$\text{Generalization Error} \leq \text{Training Error} + O\left(\sqrt{\frac{d_{VC}}{n}}\right)$$
 
 This tells us:

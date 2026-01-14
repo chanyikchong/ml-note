@@ -19,6 +19,7 @@
 ## 2. 核心定义
 
 ### 模型
+
 $$y = X\beta + \epsilon$$
 
 其中：
@@ -28,12 +29,15 @@ $$y = X\beta + \epsilon$$
 - $\epsilon \in \mathbb{R}^n$：误差项
 
 ### OLS目标
+
 $$\min_\beta \|y - X\beta\|_2^2 = \min_\beta \sum_{i=1}^n (y_i - x_i^T\beta)^2$$
 
 ### Ridge回归
+
 $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_2^2$$
 
 ### Lasso回归
+
 $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_1$$
 
 ---
@@ -43,15 +47,19 @@ $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_1$$
 ### OLS闭式解
 
 **推导：**
+
 $$\mathcal{L}(\beta) = (y - X\beta)^T(y - X\beta)$$
 
 展开：
+
 $$\mathcal{L}(\beta) = y^Ty - 2\beta^TX^Ty + \beta^TX^TX\beta$$
 
 求梯度并令其为零：
+
 $$\nabla_\beta \mathcal{L} = -2X^Ty + 2X^TX\beta = 0$$
 
 求解$\beta$：
+
 $$\boxed{\hat{\beta}_{OLS} = (X^TX)^{-1}X^Ty}$$
 
 **要求**：$X^TX$可逆（满列秩）

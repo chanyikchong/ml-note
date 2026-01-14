@@ -24,6 +24,7 @@
 3. Average predictions (regression) or vote (classification)
 
 **Variance reduction:**
+
 $$\text{Var}(\bar{f}) = \frac{1}{B}\text{Var}(f) + \frac{B-1}{B}\rho \cdot \text{Var}(f)$$
 
 Where $\rho$ is correlation between models.
@@ -36,16 +37,19 @@ Bagged decision trees with additional randomness:
 
 ### Boosting
 Sequentially combine weak learners:
+
 $$F_m(x) = F_{m-1}(x) + \eta \cdot h_m(x)$$
 
 Where $h_m$ is fitted to correct errors of $F_{m-1}$.
 
 ### AdaBoost
 Reweight misclassified samples:
+
 $$w_i^{(m)} = w_i^{(m-1)} \cdot \exp(\alpha_m \cdot \mathbb{1}[y_i \neq h_m(x_i)])$$
 
 ### Gradient Boosting
 Fit new tree to pseudo-residuals:
+
 $$r_i^{(m)} = -\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}$$
 
 For MSE loss: $r_i = y_i - F_{m-1}(x_i)$ (actual residuals)
@@ -57,6 +61,7 @@ For MSE loss: $r_i = y_i - F_{m-1}(x_i)$ (actual residuals)
 ### Random Forest Variance Reduction
 
 For B trees with correlation $\rho$:
+
 $$\text{Var}(\bar{f}) = \rho \sigma^2 + \frac{1-\rho}{B}\sigma^2$$
 
 - As $B \to \infty$: $\text{Var} \to \rho \sigma^2$
@@ -68,9 +73,11 @@ $$\text{Var}(\bar{f}) = \rho \sigma^2 + \frac{1-\rho}{B}\sigma^2$$
 **Goal**: Minimize $\sum_i L(y_i, F(x_i))$
 
 **Functional gradient descent**:
+
 $$F_m = F_{m-1} - \eta \nabla_F L$$
 
 **Pseudo-residuals** (negative gradient direction):
+
 $$r_i^{(m)} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}$$
 
 | Loss | $L(y, F)$ | Pseudo-residual |
@@ -84,6 +91,7 @@ $$r_i^{(m)} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F
 $$\text{Obj} = \sum_i L(y_i, \hat{y}_i) + \sum_k \Omega(f_k)$$
 
 **Regularization:**
+
 $$\Omega(f) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$$
 
 - $T$: number of leaves
@@ -94,9 +102,11 @@ $$\Omega(f) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$$
 ### Feature Importance
 
 **MDI (Mean Decrease in Impurity)**:
+
 $$\text{Importance}(j) = \sum_{\text{nodes using } j} p(\text{node}) \cdot \Delta \text{impurity}$$
 
 **Permutation Importance**:
+
 $$\text{Importance}(j) = \text{score} - \text{score}_{\text{permuted } j}$$
 
 ---
@@ -412,6 +422,7 @@ Key: We're doing gradient descent in function space, where each tree represents 
 <summary><strong>Q4: What is the role of learning rate in gradient boosting?</strong></summary>
 
 Learning rate $\eta$ (shrinkage) controls step size:
+
 $$F_m = F_{m-1} + \eta \cdot h_m$$
 
 **Effects**:

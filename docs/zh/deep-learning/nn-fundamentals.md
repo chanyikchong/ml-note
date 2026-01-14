@@ -26,6 +26,7 @@
 - 全连接（密集）层
 
 ### 前向传播
+
 $$h^{(l)} = \sigma(W^{(l)}h^{(l-1)} + b^{(l)})$$
 
 ### 反向传播
@@ -50,12 +51,15 @@ $$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\p
 对于损失 $\mathcal{L}$ 和层输出 $a^{(l)} = \sigma(z^{(l)})$，其中 $z^{(l)} = W^{(l)}a^{(l-1)} + b^{(l)}$：
 
 **输出层梯度：**
+
 $$\delta^{(L)} = \frac{\partial \mathcal{L}}{\partial z^{(L)}}$$
 
 **隐藏层梯度（递归）：**
+
 $$\delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'(z^{(l)})$$
 
 **权重梯度：**
+
 $$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \delta^{(l)} (a^{(l-1)})^T$$
 
 ### 通用近似定理
@@ -190,6 +194,7 @@ $$\frac{\partial \mathcal{L}}{\partial W^{(l)}} = \frac{\partial \mathcal{L}}{\p
 <summary><strong>Q5: 什么是Xavier/Glorot初始化？</strong></summary>
 
 初始化权重为：
+
 $$W \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right)$$
 
 这使激活的方差在各层之间大致恒定，防止前向传播中信号消失/爆炸。

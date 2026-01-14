@@ -61,6 +61,7 @@
 - AUC < 0.5：比随机差
 
 **概率解释：**
+
 $$\text{AUC} = P(\text{score}_{正例} > \text{score}_{负例})$$
 
 ### PR曲线
@@ -72,6 +73,7 @@ $$\text{AUC} = P(\text{score}_{正例} > \text{score}_{负例})$$
 ### F-beta分数
 
 广义F1允许精确率-召回率加权：
+
 $$F_\beta = \frac{(1 + \beta^2) \cdot Prec \cdot Rec}{\beta^2 \cdot Prec + Rec}$$
 
 - $\beta = 1$：等权重（F1）

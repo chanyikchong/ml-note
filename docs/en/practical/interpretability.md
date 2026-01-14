@@ -47,6 +47,7 @@
 ### Permutation Importance
 
 Measure importance of feature $j$:
+
 $$I_j = s - \frac{1}{K}\sum_{k=1}^{K} s_{\pi_k(j)}$$
 
 Where:
@@ -57,6 +58,7 @@ Where:
 ### SHAP Values (Shapley Values)
 
 For feature $i$, the SHAP value:
+
 $$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f(S \cup \{i\}) - f(S)]$$
 
 **Properties:**
@@ -68,6 +70,7 @@ $$\phi_i = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N|-|S|-1)!}{|N|!} [f
 ### LIME (Local Interpretable Model-agnostic Explanations)
 
 Find interpretable model $g$ that approximates $f$ locally:
+
 $$\xi(x) = \arg\min_{g \in G} L(f, g, \pi_x) + \Omega(g)$$
 
 Where:

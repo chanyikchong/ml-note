@@ -19,6 +19,7 @@
 ## 2. 核心定义
 
 ### 均方误差（MSE）
+
 $$\mathcal{L}_{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 **性质：**
@@ -28,6 +29,7 @@ $$\mathcal{L}_{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 - 最优预测器：$\mathbb{E}[Y|X]$（条件均值）
 
 ### 平均绝对误差（MAE）
+
 $$\mathcal{L}_{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 
 **性质：**
@@ -39,9 +41,11 @@ $$\mathcal{L}_{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 ### 交叉熵损失（对数损失）
 
 **二分类：**
+
 $$\mathcal{L}_{CE} = -\frac{1}{n} \sum_{i=1}^{n} [y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i)]$$
 
 **多分类：**
+
 $$\mathcal{L}_{CE} = -\frac{1}{n} \sum_{i=1}^{n} \sum_{c=1}^{C} y_{ic} \log(\hat{p}_{ic})$$
 
 ### 校准
@@ -58,9 +62,11 @@ $$P(Y=1 | \hat{p}(X)=p) = p$$
 假设高斯噪声：$y = f(x) + \epsilon$，其中 $\epsilon \sim \mathcal{N}(0, \sigma^2)$
 
 **似然：**
+
 $$p(y|x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y - f(x))^2}{2\sigma^2}\right)$$
 
 **对数似然：**
+
 $$\log p(y|x) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y - f(x))^2}{2\sigma^2}$$
 
 最大化对数似然 $\equiv$ 最小化 $(y - f(x))^2$ $\equiv$ MSE
@@ -70,9 +76,11 @@ $$\log p(y|x) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y - f(x))^2}{2\sigma^2}$
 对于真实分布 $p$ 和预测分布 $q$：
 
 **KL散度：**
+
 $$D_{KL}(p \| q) = \sum_x p(x) \log \frac{p(x)}{q(x)} = -H(p) - \sum_x p(x) \log q(x)$$
 
 由于 $H(p)$ 相对于模型参数是常数：
+
 $$\min D_{KL}(p \| q) \equiv \min \left(-\sum_x p(x) \log q(x)\right) = \min \mathcal{L}_{CE}$$
 
 ### Huber损失（平滑MAE）

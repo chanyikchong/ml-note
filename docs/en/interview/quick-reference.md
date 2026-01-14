@@ -99,6 +99,7 @@ Chain rule through layers.
 ### BatchNorm
 
 $$\hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}$$
+
 $$y = \gamma \hat{x} + \beta$$
 
 ### CNN Output Size
@@ -201,8 +202,11 @@ $$w_{t+1} = w_t - \eta \nabla L(w_t)$$
 ### Adam
 
 $$m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t$$
+
 $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
+
 $$\hat{m}_t = \frac{m_t}{1-\beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1-\beta_2^t}$$
+
 $$w_{t+1} = w_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 
 Default: $\beta_1=0.9$, $\beta_2=0.999$, $\epsilon=10^{-8}$

@@ -47,6 +47,7 @@ $$\theta_{t+1} = \theta_t - \eta \frac{1}{|B|} \sum_{i \in B} \nabla_\theta \mat
 Accumulate gradient history to accelerate convergence:
 
 $$v_t = \gamma v_{t-1} + \eta \nabla_\theta \mathcal{L}(\theta_t)$$
+
 $$\theta_{t+1} = \theta_t - v_t$$
 
 **Typical $\gamma$**: 0.9
@@ -60,25 +61,32 @@ $$\theta_{t+1} = \theta_t - v_t$$
 For convex loss with L-Lipschitz gradients:
 
 **GD Convergence Rate:**
+
 $$\mathcal{L}(\theta_T) - \mathcal{L}(\theta^*) \leq \frac{L\|\theta_0 - \theta^*\|^2}{2T}$$
 
 Converges as $O(1/T)$.
 
 **SGD Convergence:**
 With decreasing learning rate $\eta_t = \eta_0/\sqrt{t}$:
+
 $$\mathbb{E}[\mathcal{L}(\bar{\theta}_T)] - \mathcal{L}(\theta^*) \leq O\left(\frac{1}{\sqrt{T}}\right)$$
 
 ### Adam Algorithm
 
 **Moment Estimates:**
+
 $$m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t$$
+
 $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
 
 **Bias Correction:**
+
 $$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$$
+
 $$\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
 
 **Update:**
+
 $$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 
 **Default hyperparameters:** $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\epsilon = 10^{-8}$
@@ -86,15 +94,19 @@ $$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 ### Learning Rate Schedules
 
 **Step Decay:**
+
 $$\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$$
 
 **Exponential Decay:**
+
 $$\eta_t = \eta_0 \cdot e^{-kt}$$
 
 **Cosine Annealing:**
+
 $$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{t}{T}\pi\right)\right)$$
 
 **Warmup:**
+
 $$\eta_t = \frac{t}{T_{warmup}} \cdot \eta_{target} \quad \text{for } t < T_{warmup}$$
 
 ---

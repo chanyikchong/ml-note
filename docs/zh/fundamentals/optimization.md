@@ -47,6 +47,7 @@ $$\theta_{t+1} = \theta_t - \eta \frac{1}{|B|} \sum_{i \in B} \nabla_\theta \mat
 累积梯度历史以加速收敛：
 
 $$v_t = \gamma v_{t-1} + \eta \nabla_\theta \mathcal{L}(\theta_t)$$
+
 $$\theta_{t+1} = \theta_t - v_t$$
 
 **典型 $\gamma$**：0.9
@@ -60,25 +61,32 @@ $$\theta_{t+1} = \theta_t - v_t$$
 对于具有L-Lipschitz梯度的凸损失：
 
 **GD收敛速率：**
+
 $$\mathcal{L}(\theta_T) - \mathcal{L}(\theta^*) \leq \frac{L\|\theta_0 - \theta^*\|^2}{2T}$$
 
 收敛速度为 $O(1/T)$。
 
 **SGD收敛：**
 使用递减学习率 $\eta_t = \eta_0/\sqrt{t}$：
+
 $$\mathbb{E}[\mathcal{L}(\bar{\theta}_T)] - \mathcal{L}(\theta^*) \leq O\left(\frac{1}{\sqrt{T}}\right)$$
 
 ### Adam算法
 
 **矩估计：**
+
 $$m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t$$
+
 $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
 
 **偏差校正：**
+
 $$\hat{m}_t = \frac{m_t}{1 - \beta_1^t}$$
+
 $$\hat{v}_t = \frac{v_t}{1 - \beta_2^t}$$
 
 **更新：**
+
 $$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 
 **默认超参数：** $\beta_1 = 0.9$，$\beta_2 = 0.999$，$\epsilon = 10^{-8}$
@@ -86,15 +94,19 @@ $$\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t$$
 ### 学习率调度
 
 **阶梯衰减：**
+
 $$\eta_t = \eta_0 \cdot \gamma^{\lfloor t/s \rfloor}$$
 
 **指数衰减：**
+
 $$\eta_t = \eta_0 \cdot e^{-kt}$$
 
 **余弦退火：**
+
 $$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{t}{T}\pi\right)\right)$$
 
 **预热：**
+
 $$\eta_t = \frac{t}{T_{warmup}} \cdot \eta_{target} \quad \text{当 } t < T_{warmup}$$
 
 ---

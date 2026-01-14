@@ -56,6 +56,7 @@ $$\sigma^2 = \text{Var}[\epsilon]$$
 - 学习函数：$\hat{f}(x)$ 在数据集 $\mathcal{D}$ 上训练
 
 **推导：**
+
 $$\begin{aligned}
 \mathbb{E}_\mathcal{D}[(y - \hat{f}(x))^2] &= \mathbb{E}_\mathcal{D}[(f(x) + \epsilon - \hat{f}(x))^2] \\
 &= \mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))^2] + \mathbb{E}[\epsilon^2] + 2\mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))\epsilon] \\
@@ -63,12 +64,14 @@ $$\begin{aligned}
 \end{aligned}$$
 
 第一项进一步分解：
+
 $$\begin{aligned}
 \mathbb{E}_\mathcal{D}[(f(x) - \hat{f}(x))^2] &= (f(x) - \mathbb{E}_\mathcal{D}[\hat{f}(x)])^2 + \mathbb{E}_\mathcal{D}[(\hat{f}(x) - \mathbb{E}_\mathcal{D}[\hat{f}(x)])^2] \\
 &= \text{Bias}^2[\hat{f}(x)] + \text{Var}[\hat{f}(x)]
 \end{aligned}$$
 
 **最终结果：**
+
 $$\boxed{\text{期望误差} = \text{偏差}^2 + \text{方差} + \text{不可约噪声}}$$
 
 ### 模型复杂度与权衡

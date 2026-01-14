@@ -19,7 +19,9 @@
 ## 2. 核心定义
 
 ### 普通RNN
+
 $$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
+
 $$y_t = W_{hy} h_t + b_y$$
 
 ### LSTM（长短期记忆）
@@ -30,7 +32,9 @@ $$y_t = W_{hy} h_t + b_y$$
 - **输出门**：$o_t = \sigma(W_o [h_{t-1}, x_t] + b_o)$
 
 细胞状态更新：
+
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
+
 $$h_t = o_t \odot \tanh(C_t)$$
 
 ### GRU（门控循环单元）
@@ -52,6 +56,7 @@ $$\frac{\partial L}{\partial W_{hh}} = \sum_t \sum_{k=1}^{t} \frac{\partial L_t}
 ### 梯度消失问题
 
 项 $\frac{\partial h_t}{\partial h_k}$ 涉及乘积：
+
 $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} = \prod_{i=k+1}^{t} W_{hh}^T \text{diag}(\tanh'(h_{i-1}))$$
 
 由于 $|\tanh'(x)| \leq 1$ 且如果 $\|W_{hh}\| < 1$：
@@ -62,9 +67,11 @@ $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\par
 ### 为什么LSTM解决这个问题
 
 细胞状态更新是**加性的**：
+
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 梯度直接通过加法流动：
+
 $$\frac{\partial C_t}{\partial C_{t-1}} = f_t$$
 
 如果 $f_t \approx 1$（遗忘门打开），梯度不变流动。这创造了"梯度高速公路"。
@@ -304,6 +311,7 @@ LSTM参数: 384
 <summary><strong>Q1: 解释RNN中的梯度消失问题。</strong></summary>
 
 时间反向传播时，梯度涉及乘积：
+
 $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} W_{hh}^T \text{diag}(\tanh'(z_i))$$
 
 由于 $|\tanh'(x)| \leq 1$：

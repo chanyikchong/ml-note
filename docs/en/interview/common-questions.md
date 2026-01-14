@@ -173,6 +173,7 @@ Each new tree corrects previous errors. Ensemble grows additively.
 **A**: BatchNorm normalizes layer inputs across the batch:
 
 $$\hat{x} = \frac{x - \mu_{batch}}{\sqrt{\sigma^2_{batch} + \epsilon}}$$
+
 $$y = \gamma \hat{x} + \beta$$
 
 **Benefits**:

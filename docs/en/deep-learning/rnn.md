@@ -19,7 +19,9 @@
 ## 2. Core Definitions
 
 ### Vanilla RNN
+
 $$h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$$
+
 $$y_t = W_{hy} h_t + b_y$$
 
 ### LSTM (Long Short-Term Memory)
@@ -30,7 +32,9 @@ Four gates controlling information flow:
 - **Output gate**: $o_t = \sigma(W_o [h_{t-1}, x_t] + b_o)$
 
 Cell state update:
+
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
+
 $$h_t = o_t \odot \tanh(C_t)$$
 
 ### GRU (Gated Recurrent Unit)
@@ -52,6 +56,7 @@ $$\frac{\partial L}{\partial W_{hh}} = \sum_t \sum_{k=1}^{t} \frac{\partial L_t}
 ### Vanishing Gradient Problem
 
 The term $\frac{\partial h_t}{\partial h_k}$ involves product:
+
 $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} \frac{\partial h_i}{\partial h_{i-1}} = \prod_{i=k+1}^{t} W_{hh}^T \text{diag}(\tanh'(h_{i-1}))$$
 
 Since $|\tanh'(x)| \leq 1$ and if $\|W_{hh}\| < 1$:
@@ -62,9 +67,11 @@ Since $|\tanh'(x)| \leq 1$ and if $\|W_{hh}\| < 1$:
 ### Why LSTM Solves This
 
 Cell state update is **additive**:
+
 $$C_t = f_t \odot C_{t-1} + i_t \odot \tilde{C}_t$$
 
 Gradient flows directly through addition:
+
 $$\frac{\partial C_t}{\partial C_{t-1}} = f_t$$
 
 If $f_t \approx 1$ (forget gate open), gradient flows unchanged. This creates "gradient highways."
@@ -304,6 +311,7 @@ LSTM parameters: 384
 <summary><strong>Q1: Explain the vanishing gradient problem in RNNs.</strong></summary>
 
 When backpropagating through time, gradients involve products:
+
 $$\frac{\partial h_t}{\partial h_k} = \prod_{i=k+1}^{t} W_{hh}^T \text{diag}(\tanh'(z_i))$$
 
 Since $|\tanh'(x)| \leq 1$:

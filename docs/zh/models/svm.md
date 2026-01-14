@@ -25,6 +25,7 @@
 
 ### 软间隔SVM
 用松弛变量 $\xi_i$ 允许一些误分类：
+
 $$y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 
 ### 支持向量
@@ -48,11 +49,13 @@ $K(x, z) = \langle\phi(x), \phi(z)\rangle$ 在特征空间计算内积。
 ### 原始形式（硬间隔）
 
 $$\min_{w,b} \frac{1}{2}\|w\|^2$$
+
 $$\text{s.t. } y_i(w^Tx_i + b) \geq 1, \quad \forall i$$
 
 ### 原始形式（软间隔）
 
 $$\min_{w,b,\xi} \frac{1}{2}\|w\|^2 + C\sum_i \xi_i$$
+
 $$\text{s.t. } y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 
 ### 对偶形式
@@ -60,6 +63,7 @@ $$\text{s.t. } y_i(w^Tx_i + b) \geq 1 - \xi_i, \quad \xi_i \geq 0$$
 使用拉格朗日乘子 $\alpha_i$：
 
 $$\max_\alpha \sum_i \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j x_i^T x_j$$
+
 $$\text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0$$
 
 **关键洞察**：只有点积 $x_i^Tx_j$ 出现 → 可以用核！
@@ -71,6 +75,7 @@ $$\text{s.t. } 0 \leq \alpha_i \leq C, \quad \sum_i \alpha_i y_i = 0$$
 $$\max_\alpha \sum_i \alpha_i - \frac{1}{2}\sum_{i,j} \alpha_i \alpha_j y_i y_j K(x_i, x_j)$$
 
 **决策函数**：
+
 $$f(x) = \text{sign}\left(\sum_i \alpha_i y_i K(x_i, x) + b\right)$$
 
 ### RBF核性质

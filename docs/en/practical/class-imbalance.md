@@ -19,6 +19,7 @@
 ## 2. Core Definitions
 
 ### Imbalance Ratio
+
 $$\text{IR} = \frac{n_{majority}}{n_{minority}}$$
 
 ### Resampling Strategies
@@ -32,6 +33,7 @@ $$\text{IR} = \frac{n_{majority}}{n_{minority}}$$
 
 ### Cost-Sensitive Learning
 Weight loss by class frequency:
+
 $$L = \sum_i w_{y_i} \cdot \ell(y_i, \hat{y}_i)$$
 
 Where $w_{minority} > w_{majority}$
@@ -50,9 +52,11 @@ For each minority sample $x_i$:
 ### Class Weights
 
 **Balanced weights:**
+
 $$w_c = \frac{n_{total}}{n_c \cdot n_{classes}}$$
 
 **Inverse frequency:**
+
 $$w_c = \frac{1}{n_c}$$
 
 ### Threshold Optimization

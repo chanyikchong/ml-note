@@ -53,9 +53,11 @@
 ### Target Encoding with Smoothing
 
 To prevent overfitting on rare categories:
+
 $$\text{encoded}_c = \lambda(c) \cdot \bar{y}_c + (1 - \lambda(c)) \cdot \bar{y}_{global}$$
 
 Where:
+
 $$\lambda(c) = \frac{n_c}{n_c + m}$$
 
 $m$ is smoothing parameter. More samples → trust category mean; fewer → trust global mean.
@@ -63,6 +65,7 @@ $m$ is smoothing parameter. More samples → trust category mean; fewer → trus
 ### Variance Inflation Factor (VIF)
 
 Detect multicollinearity:
+
 $$VIF_j = \frac{1}{1 - R_j^2}$$
 
 Where $R_j^2$ is R² from regressing feature $j$ on all other features.

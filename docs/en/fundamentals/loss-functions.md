@@ -19,6 +19,7 @@
 ## 2. Core Definitions
 
 ### Mean Squared Error (MSE)
+
 $$\mathcal{L}_{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 **Properties:**
@@ -28,6 +29,7 @@ $$\mathcal{L}_{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 - Optimal predictor: $\mathbb{E}[Y|X]$ (conditional mean)
 
 ### Mean Absolute Error (MAE)
+
 $$\mathcal{L}_{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 
 **Properties:**
@@ -39,9 +41,11 @@ $$\mathcal{L}_{MAE} = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
 ### Cross-Entropy Loss (Log Loss)
 
 **Binary Classification:**
+
 $$\mathcal{L}_{CE} = -\frac{1}{n} \sum_{i=1}^{n} [y_i \log(\hat{p}_i) + (1-y_i) \log(1-\hat{p}_i)]$$
 
 **Multi-class Classification:**
+
 $$\mathcal{L}_{CE} = -\frac{1}{n} \sum_{i=1}^{n} \sum_{c=1}^{C} y_{ic} \log(\hat{p}_{ic})$$
 
 ### Calibration
@@ -58,9 +62,11 @@ $$P(Y=1 | \hat{p}(X)=p) = p$$
 Assume Gaussian noise: $y = f(x) + \epsilon$, where $\epsilon \sim \mathcal{N}(0, \sigma^2)$
 
 **Likelihood:**
+
 $$p(y|x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y - f(x))^2}{2\sigma^2}\right)$$
 
 **Log-likelihood:**
+
 $$\log p(y|x) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y - f(x))^2}{2\sigma^2}$$
 
 Maximizing log-likelihood $\equiv$ minimizing $(y - f(x))^2$ $\equiv$ MSE
@@ -70,9 +76,11 @@ Maximizing log-likelihood $\equiv$ minimizing $(y - f(x))^2$ $\equiv$ MSE
 For true distribution $p$ and predicted distribution $q$:
 
 **KL Divergence:**
+
 $$D_{KL}(p \| q) = \sum_x p(x) \log \frac{p(x)}{q(x)} = -H(p) - \sum_x p(x) \log q(x)$$
 
 Since $H(p)$ is constant w.r.t. model parameters:
+
 $$\min D_{KL}(p \| q) \equiv \min \left(-\sum_x p(x) \log q(x)\right) = \min \mathcal{L}_{CE}$$
 
 ### Huber Loss (Smooth MAE)

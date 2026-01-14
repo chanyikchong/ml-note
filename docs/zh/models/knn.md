@@ -36,6 +36,7 @@
 
 ### 加权kNN
 按距离倒数加权邻居：
+
 $$\hat{y} = \frac{\sum_{i \in N_k} w_i y_i}{\sum_{i \in N_k} w_i}, \quad w_i = \frac{1}{d(x, x_i)}$$
 
 ---
@@ -66,6 +67,7 @@ $$\hat{y} = \frac{\sum_{i \in N_k} w_i y_i}{\sum_{i \in N_k} w_i}, \quad w_i = \
 - 最近邻并不比最远邻近多少
 
 对于 $[0,1]^d$ 中的均匀分布：
+
 $$\frac{\text{dist}_{max} - \text{dist}_{min}}{\text{dist}_{min}} \to 0 \text{ 当 } d \to \infty$$
 
 超球体相对于超立方体的体积呈指数衰减。

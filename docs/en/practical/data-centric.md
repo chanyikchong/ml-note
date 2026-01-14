@@ -51,17 +51,21 @@
 If $P_{train}(X) \neq P_{test}(X)$ but $P(Y|X)$ is same:
 
 **Importance weighting:**
+
 $$w(x) = \frac{P_{test}(x)}{P_{train}(x)}$$
 
 Weighted loss:
+
 $$L_{corrected} = \sum_i w(x_i) \cdot \ell(y_i, \hat{y}_i)$$
 
 ### Label Noise Model
 
 With noise rate $\eta$ (probability of label flip):
+
 $$P(\tilde{y}|x) = (1-\eta) P(y|x) + \eta P(y_{wrong}|x)$$
 
 **Forward correction:**
+
 $$P(y|x) = \frac{P(\tilde{y}|x) - \eta P(y_{wrong}|x)}{1 - \eta}$$
 
 ### Outlier Detection (Z-score)
@@ -349,6 +353,7 @@ $$w(x) = \frac{P_{test}(x)}{P_{train}(x)}$$
 3. Propensity scores
 
 **Weighted training**:
+
 $$\min_\theta \sum_i w(x_i) \cdot L(y_i, f_\theta(x_i))$$
 
 **Caveat**: Unstable when $P_{train}(x)$ is very small (high variance weights).

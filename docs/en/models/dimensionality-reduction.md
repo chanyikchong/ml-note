@@ -19,11 +19,13 @@
 
 ### PCA (Principal Component Analysis)
 Find directions of maximum variance:
+
 $$\max_w w^T \Sigma w \quad \text{s.t. } \|w\|_2 = 1$$
 
 Solution: Eigenvectors of covariance matrix $\Sigma$.
 
 ### Explained Variance Ratio
+
 $$\text{Explained ratio}_k = \frac{\lambda_k}{\sum_i \lambda_i}$$
 
 Choose k to explain desired % of variance (e.g., 95%).
@@ -47,13 +49,17 @@ Minimize KL divergence between:
 **Objective**: Find projection $w$ maximizing variance.
 
 **Variance of projected data:**
+
 $$\text{Var}(Xw) = w^T X^T X w = w^T \Sigma w$$
 
 **Constrained optimization** (Lagrangian):
+
 $$L = w^T \Sigma w - \lambda(w^T w - 1)$$
 
 **Taking derivative:**
+
 $$\frac{\partial L}{\partial w} = 2\Sigma w - 2\lambda w = 0$$
+
 $$\Sigma w = \lambda w$$
 
 Solution: $w$ is eigenvector of $\Sigma$, variance = $\lambda$.
@@ -63,6 +69,7 @@ Solution: $w$ is eigenvector of $\Sigma$, variance = $\lambda$.
 ### PCA via SVD
 
 For centered data $X$:
+
 $$X = U \Sigma V^T$$
 
 - Columns of $V$: Principal components (eigenvectors of $X^T X$)
@@ -74,13 +81,17 @@ SVD is numerically more stable than eigendecomposition.
 ### t-SNE Algorithm
 
 **Step 1**: Compute pairwise similarities in high-dim
+
 $$p_{j|i} = \frac{\exp(-\|x_i - x_j\|^2 / 2\sigma_i^2)}{\sum_{k \neq i} \exp(-\|x_i - x_k\|^2 / 2\sigma_i^2)}$$
+
 $$p_{ij} = \frac{p_{j|i} + p_{i|j}}{2n}$$
 
 **Step 2**: Define similarities in low-dim (t-distribution)
+
 $$q_{ij} = \frac{(1 + \|y_i - y_j\|^2)^{-1}}{\sum_{k \neq l}(1 + \|y_k - y_l\|^2)^{-1}}$$
 
 **Step 3**: Minimize KL divergence
+
 $$KL(P \| Q) = \sum_{i \neq j} p_{ij} \log \frac{p_{ij}}{q_{ij}}$$
 
 ### Why t-distribution?
@@ -293,12 +304,15 @@ PCA reconstruction MSE: 0.0098
 **Variance of projection**: $\text{Var}(Xw) = w^T \Sigma w$ where $\Sigma$ is covariance matrix.
 
 **Constrained optimization**:
+
 $$\max_w w^T \Sigma w \quad \text{s.t. } w^T w = 1$$
 
 **Lagrangian**: $L = w^T \Sigma w - \lambda(w^T w - 1)$
 
 **Setting gradient to zero**:
+
 $$\nabla_w L = 2\Sigma w - 2\lambda w = 0$$
+
 $$\Sigma w = \lambda w$$
 
 This is an eigenvalue equation. The maximum variance direction is the eigenvector with largest eigenvalue.

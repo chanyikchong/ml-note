@@ -55,6 +55,7 @@
 ### Model Performance Monitoring
 
 Track prediction distribution over time:
+
 $$D_{KL}(P_{current} \| P_{baseline}) = \sum_i P_{current}(i) \log \frac{P_{current}(i)}{P_{baseline}(i)}$$
 
 Alert if $D_{KL} > \tau$ (threshold).
@@ -62,6 +63,7 @@ Alert if $D_{KL} > \tau$ (threshold).
 ### Data Drift Detection (PSI)
 
 Population Stability Index:
+
 $$PSI = \sum_i (A_i - E_i) \cdot \ln\left(\frac{A_i}{E_i}\right)$$
 
 Where $A_i$ = actual proportion, $E_i$ = expected proportion in bin $i$.
@@ -75,6 +77,7 @@ Where $A_i$ = actual proportion, $E_i$ = expected proportion in bin $i$.
 ### A/B Test Sample Size
 
 Minimum samples per variant:
+
 $$n = \frac{2(z_{\alpha/2} + z_\beta)^2 \sigma^2}{\delta^2}$$
 
 Where $\delta$ = minimum detectable effect.

@@ -24,6 +24,7 @@
 3. 平均预测（回归）或投票（分类）
 
 **方差减少：**
+
 $$\text{Var}(\bar{f}) = \frac{1}{B}\text{Var}(f) + \frac{B-1}{B}\rho \cdot \text{Var}(f)$$
 
 其中 $\rho$ 是模型间的相关性。
@@ -36,16 +37,19 @@ $$\text{Var}(\bar{f}) = \frac{1}{B}\text{Var}(f) + \frac{B-1}{B}\rho \cdot \text
 
 ### Boosting
 顺序组合弱学习器：
+
 $$F_m(x) = F_{m-1}(x) + \eta \cdot h_m(x)$$
 
 其中 $h_m$ 用于纠正 $F_{m-1}$ 的错误。
 
 ### AdaBoost
 重新加权误分类样本：
+
 $$w_i^{(m)} = w_i^{(m-1)} \cdot \exp(\alpha_m \cdot \mathbb{1}[y_i \neq h_m(x_i)])$$
 
 ### 梯度提升
 对伪残差拟合新树：
+
 $$r_i^{(m)} = -\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}$$
 
 对于MSE损失：$r_i = y_i - F_{m-1}(x_i)$（实际残差）
@@ -57,6 +61,7 @@ $$r_i^{(m)} = -\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}$$
 ### 随机森林方差减少
 
 对于B棵相关性为 $\rho$ 的树：
+
 $$\text{Var}(\bar{f}) = \rho \sigma^2 + \frac{1-\rho}{B}\sigma^2$$
 
 - 当 $B \to \infty$：$\text{Var} \to \rho \sigma^2$
@@ -68,9 +73,11 @@ $$\text{Var}(\bar{f}) = \rho \sigma^2 + \frac{1-\rho}{B}\sigma^2$$
 **目标**：最小化 $\sum_i L(y_i, F(x_i))$
 
 **函数梯度下降**：
+
 $$F_m = F_{m-1} - \eta \nabla_F L$$
 
 **伪残差**（负梯度方向）：
+
 $$r_i^{(m)} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}$$
 
 | 损失 | $L(y, F)$ | 伪残差 |
@@ -84,6 +91,7 @@ $$r_i^{(m)} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F
 $$\text{Obj} = \sum_i L(y_i, \hat{y}_i) + \sum_k \Omega(f_k)$$
 
 **正则化：**
+
 $$\Omega(f) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$$
 
 - $T$：叶子数
@@ -94,9 +102,11 @@ $$\Omega(f) = \gamma T + \frac{1}{2}\lambda \sum_{j=1}^{T} w_j^2$$
 ### 特征重要性
 
 **MDI（平均不纯度减少）**：
+
 $$\text{Importance}(j) = \sum_{\text{使用 } j \text{ 的节点}} p(\text{节点}) \cdot \Delta \text{不纯度}$$
 
 **置换重要性**：
+
 $$\text{Importance}(j) = \text{分数} - \text{置换 } j \text{ 后的分数}$$
 
 ---
@@ -412,6 +422,7 @@ print(f"梯度提升MSE: {gb_mse:.4f}")
 <summary><strong>Q4: 梯度提升中学习率的作用是什么？</strong></summary>
 
 学习率 $\eta$（收缩）控制步长：
+
 $$F_m = F_{m-1} + \eta \cdot h_m$$
 
 **效果**：

@@ -19,6 +19,7 @@
 ## 2. Core Definitions
 
 ### Model
+
 $$y = X\beta + \epsilon$$
 
 where:
@@ -28,12 +29,15 @@ where:
 - $\epsilon \in \mathbb{R}^n$: error terms
 
 ### OLS Objective
+
 $$\min_\beta \|y - X\beta\|_2^2 = \min_\beta \sum_{i=1}^n (y_i - x_i^T\beta)^2$$
 
 ### Ridge Regression
+
 $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_2^2$$
 
 ### Lasso Regression
+
 $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_1$$
 
 ---
@@ -43,15 +47,19 @@ $$\min_\beta \|y - X\beta\|_2^2 + \lambda\|\beta\|_1$$
 ### OLS Closed-Form Solution
 
 **Derivation:**
+
 $$\mathcal{L}(\beta) = (y - X\beta)^T(y - X\beta)$$
 
 Expand:
+
 $$\mathcal{L}(\beta) = y^Ty - 2\beta^TX^Ty + \beta^TX^TX\beta$$
 
 Take gradient and set to zero:
+
 $$\nabla_\beta \mathcal{L} = -2X^Ty + 2X^TX\beta = 0$$
 
 Solve for $\beta$:
+
 $$\boxed{\hat{\beta}_{OLS} = (X^TX)^{-1}X^Ty}$$
 
 **Requires**: $X^TX$ invertible (full column rank)
