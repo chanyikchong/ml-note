@@ -35,6 +35,10 @@ env/
 
 # Generated site
 _site/
+site/
+
+# Claude temporary files
+.claude/
 
 # OS
 .DS_Store

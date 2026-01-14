@@ -1,15 +1,22 @@
-# ML Study Notes - Python Dependencies
+# Documentation
+mkdocs>=1.5.0
+mkdocs-material>=9.5.0
+mkdocs-static-i18n>=1.2.0
 
-# Site Generator
-markdown>=3.4.0
-Jinja2>=3.1.0
-PyYAML>=6.0
+# Math rendering
+pymdown-extensions>=10.0
 
-# Code Examples
-numpy>=1.21.0
+# ML Examples
+numpy>=1.24.0
 scipy>=1.9.0
+matplotlib>=3.7.0
 
-# Optional: for running neural network examples
+# Optional: Deep learning examples
 # torch>=2.0.0
 
-# Validators
+# Q&A System
+rank-bm25>=0.2.2
+pyyaml>=6.0
+
+# Validation
+pathlib>=1.0.1

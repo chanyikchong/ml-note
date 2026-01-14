@@ -1,0 +1,151 @@
+site_name: ML Study Notes
+site_description: Bilingual Machine Learning study notes for interviews
+site_url: https://chanyikchong.github.io/ml-study-notes/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+          nav_translations:
+            Home: 首页
+            Fundamentals: 基础知识
+            Learning Paradigms: 学习范式
+            Data Splits: 数据划分与验证
+            Bias-Variance: 偏差-方差权衡
+            Loss Functions: 损失函数
+            Optimization: 优化算法
+            Regularization: 正则化
+            Generalization: 泛化与容量
+            Core Models: 核心模型
+            Linear Regression: 线性回归
+            Logistic Regression: 逻辑回归
+            SVM: 支持向量机
+            k-NN: k近邻
+            Naive Bayes: 朴素贝叶斯
+            Decision Trees: 决策树
+            Ensemble Methods: 集成方法
+            Clustering: 聚类
+            Dimensionality Reduction: 降维
+            Deep Learning: 深度学习
+            Neural Network Fundamentals: 神经网络基础
+            CNN: 卷积神经网络
+            RNN: 循环神经网络
+            Normalization: 归一化
+            Training: 深度网络训练
+            Practical ML: 实用机器学习
+            Metrics: 评估指标
+            Class Imbalance: 类别不平衡
+            Feature Engineering: 特征工程
+            Interpretability: 可解释性
+            Data-Centric Issues: 数据中心问题
+            MLOps: MLOps概述
+            Interview Prep: 面试准备
+            Common Questions: 常见问题
+            Quick Reference: 快速参考
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+      block_tag: 'div'
+      inline_tag: 'span'
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - assets/javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: 中文
+      link: /zh/
+      lang: zh
+
+nav:
+  - Home: index.md
+  - Fundamentals:
+    - Learning Paradigms: fundamentals/learning-paradigms.md
+    - Data Splits: fundamentals/data-splits.md
+    - Bias-Variance: fundamentals/bias-variance.md
+    - Loss Functions: fundamentals/loss-functions.md
+    - Optimization: fundamentals/optimization.md
+    - Regularization: fundamentals/regularization.md
+    - Generalization: fundamentals/generalization.md
+  - Core Models:
+    - Linear Regression: models/linear-regression.md
+    - Logistic Regression: models/logistic-regression.md
+    - SVM: models/svm.md
+    - k-NN: models/knn.md
+    - Naive Bayes: models/naive-bayes.md
+    - Decision Trees: models/decision-trees.md
+    - Ensemble Methods: models/ensemble.md
+    - Clustering: models/clustering.md
+    - Dimensionality Reduction: models/dimensionality-reduction.md
+  - Deep Learning:
+    - Neural Network Fundamentals: deep-learning/nn-fundamentals.md
+    - CNN: deep-learning/cnn.md
+    - RNN: deep-learning/rnn.md
+    - Normalization: deep-learning/normalization.md
+    - Training: deep-learning/training.md
+  - Practical ML:
+    - Metrics: practical/metrics.md
+    - Class Imbalance: practical/class-imbalance.md
+    - Feature Engineering: practical/feature-engineering.md
+    - Interpretability: practical/interpretability.md
+    - Data-Centric Issues: practical/data-centric.md
+    - MLOps: practical/mlops.md
+  - Interview Prep:
+    - Common Questions: interview/common-questions.md
+    - Quick Reference: interview/quick-reference.md

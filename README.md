@@ -4,207 +4,135 @@ A comprehensive, bilingual (English/中文) Machine Learning study note system t
 
 ## Features
 
-- **Bilingual Documentation**: Full coverage in English and Chinese
+- **Bilingual Documentation**: Full coverage in English and Chinese with automatic language toggle
 - **Interview-Ready**: Each topic includes interview summaries and common questions
-- **Mathematically Rigorous**: Complete derivations and proofs where appropriate
+- **Mathematically Rigorous**: Complete derivations with MathJax rendering
 - **Runnable Code Examples**: Python implementations for all key algorithms
-- **Interactive Quizzes**: 5+ quiz questions per topic with hidden answers
-- **Static Site**: Generate a navigable website with math rendering (KaTeX)
+- **Interactive Quizzes**: 5+ quiz questions per topic with click-to-reveal answers
+- **Q&A System**: Offline BM25 search with patch proposal workflow
 
 ## Quick Start
 
 ```bash
 # Install dependencies
-pip install -e .
+pip install -r requirements.txt
 
-# Run a code demo
-python -m ml_examples.run --demo linear_regression
-python -m ml_examples.run --demo pca
-python -m ml_examples.run --list  # See all demos
-
-# Validate documentation
-python -m validators.main
+# Serve locally with live reload
+mkdocs serve
+# Open http://localhost:8000
 
 # Build static site
-python -m site_generator.build
-python -m site_generator.build --serve  # Build and serve locally
-
-# Extract skills
-python -m skills.extract
+mkdocs build
 ```
 
 ## Project Structure
 
 ```
 ML/
-├── docs/
-│   ├── en/                          # English documentation
-│   │   ├── index.md                 # Main index
-│   │   ├── fundamentals/            # ML fundamentals
-│   │   │   ├── learning-paradigms.md
-│   │   │   ├── data-splits.md
-│   │   │   ├── bias-variance.md
-│   │   │   ├── loss-functions.md
-│   │   │   ├── optimization.md
-│   │   │   ├── regularization.md
-│   │   │   └── generalization.md
-│   │   ├── models/                  # Core ML models
-│   │   │   ├── linear-regression.md
-│   │   │   ├── logistic-regression.md
-│   │   │   └── ...
-│   │   ├── deep-learning/           # Deep learning basics
-│   │   ├── practical/               # Practical ML engineering
-│   │   └── interview/               # Interview preparation
-│   └── zh/                          # Chinese documentation (mirrors en/)
+├── docs/                        # Documentation (markdown)
+│   ├── en/                      # English content
+│   │   ├── fundamentals/        # ML basics
+│   │   ├── models/              # Core ML models
+│   │   ├── deep-learning/       # Deep learning
+│   │   ├── practical/           # Practical ML engineering
+│   │   └── interview/           # Interview prep
+│   └── zh/                      # Chinese content (mirrored)
 │
-├── ml_examples/                     # Python code examples
-│   ├── __init__.py
-│   ├── run.py                       # Main entry point
+├── ml_examples/                 # Runnable algorithm demos
 │   ├── linear_regression.py
 │   ├── logistic_regression.py
-│   ├── svm.py
-│   ├── decision_tree.py
-│   ├── ensemble.py
-│   ├── clustering.py
 │   ├── pca.py
+│   ├── kmeans.py
 │   ├── neural_network.py
-│   └── calibration.py
+│   └── run.py                   # CLI entry point
 │
-├── site_generator/                  # Static site generator
-│   ├── __init__.py
-│   └── build.py
+├── qa/                          # Q&A and validation system
+│   ├── ask.py                   # Query interface
+│   ├── index.py                 # BM25 search index
+│   ├── validate.py              # Content validation
+│   └── patch.py                 # Patch management
 │
-├── validators/                      # Documentation validators
-│   ├── __init__.py
-│   └── main.py
+├── skills/                      # Reusable skill definitions
+├── proposals/                   # Patch proposals
+├── site/                        # Generated static site (output)
 │
-├── skills/                          # Skills extraction
-│   ├── __init__.py
-│   ├── template.yaml
-│   └── extract.py
-│
-├── qa_workflow/                     # Q&A and patch workflow
-│   └── README.md
-│
-├── _site/                           # Generated static site (gitignored)
-├── config.yaml                      # Project configuration
-├── pyproject.toml                   # Python package config
-├── CLAUDE.md                        # AI assistant instructions
-└── README.md                        # This file
+├── mkdocs.yml                   # Site configuration
+├── requirements.txt             # Python dependencies
+└── README.md                    # This file
+```
+
+## Usage
+
+### Run Code Examples
+
+```bash
+# List available demos
+python -m ml_examples.run --list
+
+# Run specific demo
+python -m ml_examples.run --demo linear_regression
+python -m ml_examples.run --demo pca
+python -m ml_examples.run --demo neural_network
+```
+
+### Q&A System
+
+```bash
+# Ask a question
+python -m qa.ask "What is gradient descent?"
+python -m qa.ask "How does PCA work?" --language en
+
+# Ask with patch proposal
+python -m qa.ask "I don't understand regularization" --propose-patch
+
+# Rebuild search index
+python -m qa.index --rebuild
+```
+
+### Content Validation
+
+```bash
+# Validate all documentation
+python -m qa.validate
+
+# Show only errors
+python -m qa.validate --errors-only
+
+# Output as JSON
+python -m qa.validate --json
+```
+
+### Patch Management
+
+```bash
+# List all patches
+python -m qa.patch list
+
+# Show patch details
+python -m qa.patch show patch_20260114_120000
+
+# Apply patch (dry run)
+python -m qa.patch apply patch_20260114_120000
+
+# Apply patch (actual)
+python -m qa.patch apply patch_20260114_120000 --force
+
+# Reject patch
+python -m qa.patch reject patch_20260114_120000 --reason "Not applicable"
 ```
 
 ## Documentation Structure
 
-Each topic page follows this structure:
+Each topic page follows this standardized structure:
 
-1. **Interview Summary** - Key points and common questions
-2. **Core Definitions** - Precise definitions and terminology
-3. **Math and Derivations** - Mathematical foundations
-4. **Algorithm Sketch** - Pseudocode and implementation details
+1. **Interview Summary** - Key points and what to memorize
+2. **Core Definitions** - Formal definitions with notation
+3. **Math and Derivations** - Step-by-step mathematical details
+4. **Algorithm Sketch** - Pseudocode and complexity
 5. **Common Pitfalls** - Mistakes to avoid
-6. **Mini Example** - Runnable code demonstration
-7. **Quiz** - 5+ questions with hidden answers
-8. **References** - Academic and practical sources
-
-## Code Examples
-
-All code examples can be run from the command line:
-
-```bash
-# Linear Regression: OLS, Ridge, Lasso, Gradient Descent
-python -m ml_examples.run --demo linear_regression
-
-# Logistic Regression: Binary classification, metrics
-python -m ml_examples.run --demo logistic_regression
-
-# SVM: Margin maximization, kernel trick
-python -m ml_examples.run --demo svm
-
-# Decision Trees: Gini/Entropy, tree building
-python -m ml_examples.run --demo decision_tree
-
-# Random Forest: Bagging, feature importance
-python -m ml_examples.run --demo random_forest
-
-# Gradient Boosting: Sequential learning
-python -m ml_examples.run --demo gradient_boosting
-
-# K-Means: Clustering, elbow method
-python -m ml_examples.run --demo kmeans
-
-# PCA: From scratch, variance explained
-python -m ml_examples.run --demo pca
-
-# Neural Network: MLP, backprop (NumPy)
-python -m ml_examples.run --demo neural_network
-
-# Calibration: Platt scaling, ECE
-python -m ml_examples.run --demo calibration
-```
-
-## Validation
-
-Run validators to ensure documentation quality:
-
-```bash
-# Run all validators
-python -m validators.main
-
-# Strict mode (warnings as errors)
-python -m validators.main --strict
-```
-
-Validators check:
-- Required sections are present
-- Minimum 5 quiz questions per topic
-- Bilingual consistency (EN/ZH structure matches)
-- Code blocks in example sections
-
-## Building the Site
-
-Generate a static HTML site:
-
-```bash
-# Build site
-python -m site_generator.build
-
-# Build and serve locally (port 8000)
-python -m site_generator.build --serve
-```
-
-Features:
-- Bilingual toggle (EN/ZH)
-- KaTeX math rendering
-- Responsive design
-- Navigation sidebar
-- Collapsible quiz sections
-
-## Skills Extraction
-
-Extract and track ML skills:
-
-```bash
-# Extract skills from documentation
-python -m skills.extract
-
-# Custom output path
-python -m skills.extract --output skills/my_report.yaml
-```
-
-Output includes:
-- Skills coverage by category
-- Skills by difficulty level
-- Interview relevance ratings
-- Missing skills identification
-
-## Q&A Workflow
-
-For proposing updates:
-
-1. Create proposal in `qa_workflow/proposals/`
-2. Follow template in `qa_workflow/README.md`
-3. Run validators before submission
-4. Await review and merge
+6. **Mini Example** - Worked example with numbers
+7. **Quiz** - 5+ self-assessment questions (click to reveal)
+8. **References** - Books, papers, resources
 
 ## Topics Covered
 
@@ -224,9 +152,8 @@ For proposing updates:
 - k-Nearest Neighbors
 - Naive Bayes
 - Decision Trees
-- Random Forests
-- Gradient Boosting
-- Clustering (K-Means, GMM, Hierarchical)
+- Ensemble Methods (Random Forest, Gradient Boosting, XGBoost)
+- Clustering (K-Means, GMM, DBSCAN)
 - Dimensionality Reduction (PCA, t-SNE, UMAP)
 
 ### Deep Learning Basics
@@ -237,20 +164,55 @@ For proposing updates:
 - Training Pipeline (Initialization, Debugging, Gradient Issues)
 
 ### Practical ML Engineering
-- Evaluation Metrics (Precision, Recall, F1, ROC-AUC)
+- Evaluation Metrics (Precision, Recall, F1, ROC-AUC, PR-AUC)
 - Class Imbalance Strategies
 - Feature Engineering
 - Model Interpretability (SHAP, Permutation Importance)
 - Data-Centric Issues (Label Noise, Dataset Shift)
 - MLOps Overview
 
+### Interview Preparation
+- Common Questions Q&A
+- Quick Reference Card (formulas, key numbers)
+
+## Deployment
+
+### GitHub Pages
+
+1. Push to GitHub:
+```bash
+git add .
+git commit -m "Initial commit"
+git push origin main
+```
+
+2. Enable GitHub Pages:
+   - Go to repository **Settings** → **Pages**
+   - Source: **GitHub Actions**
+
+3. The site will be automatically built and deployed on push to main.
+
+Your site will be available at: `https://YOUR_USERNAME.github.io/ml-study-notes/`
+
+### Manual Deployment
+
+```bash
+# Build site
+mkdocs build
+
+# Or deploy directly to GitHub Pages
+mkdocs gh-deploy
+```
+
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make changes (update both EN and ZH)
-4. Run validators
-5. Submit pull request
+1. Ensure content follows the 8-section structure
+2. Run validation before committing:
+   ```bash
+   python -m qa.validate
+   ```
+3. Maintain bilingual consistency (EN and ZH must match)
+4. Include at least 5 quiz questions per topic
 
 ## License
 
